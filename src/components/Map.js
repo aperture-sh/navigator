@@ -2,7 +2,7 @@ import React from 'react';
 import './Map.css';
 import * as mapboxgl from "mapbox-gl";
 import config from '../config.json';
-import {showFeatures, turnDarkModeOff, turnDarkModeOn} from "../actions/Actions";
+import {showFeatures} from "../actions/Actions";
 import {connect} from "react-redux";
 
 class Map extends React.Component {
@@ -115,11 +115,11 @@ class Map extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.darkMode != prevProps.darkMode) this.toggleDarkMode();
+        if (this.props.darkMode !== prevProps.darkMode) this.toggleDarkMode();
     }
 
     toggleDarkMode() {
-        if (this.props.darkMode == true) {
+        if (this.props.darkMode === true) {
             this.map.setLayoutProperty("osm", 'visibility', 'none');
             this.map.setLayoutProperty("cartodb", 'visibility', 'visible');
             this.map.setPaintProperty("geo", "line-color", "rgba(0,255,0,1)")
