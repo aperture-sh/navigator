@@ -1,7 +1,7 @@
 import React from 'react';
 import './Map.css';
 import * as mapboxgl from "mapbox-gl";
-import config from './config.json';
+import config from '../config.json';
 
 export class Map extends React.Component {
     componentDidMount() {

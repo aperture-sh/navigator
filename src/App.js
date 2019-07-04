@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import {Map} from "./Map";
-import {Navbar} from "./Navbar";
-import {Sidebar} from "./Sidebar";
+import {Map} from "./components/Map";
+import {Navbar} from "./components/Navbar";
+import {Sidebar} from "./components/Sidebar";
 
 function App() {
   return (
