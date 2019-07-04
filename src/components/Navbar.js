@@ -1,7 +1,24 @@
 import React from 'react';
 import './Navbar.css';
+import {connect} from "react-redux";
+import {turnDarkModeOff, turnDarkModeOn} from "../actions/Actions";
 
-export class Navbar extends React.Component {
+class Navbar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {darkMode: false};
+    }
+
+    toggleDarkMode = () => {
+        if (this.state.darkMode) {
+            this.setState({darkMode: false});
+            this.props.turnOffDarkMode();
+        } else {
+            this.setState({darkMode: true});
+            this.props.turnOnDarkMode();
+        }
+    };
+
     render() {
         return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,8 +37,8 @@ export class Navbar extends React.Component {
                     </li>
                     <li className="nav-item">
                         <div className="custom-control custom-switch">
-                            <input type="checkbox" className="custom-control-input" id="customSwitch1" />
-                                <label className="custom-control-label" htmlFor="customSwitch1">Dark Mode</label>
+                            <input type="checkbox" className="custom-control-input" id="dark-mode-switch" onChange={this.toggleDarkMode} checked={this.state.darkMode} />
+                                <label className="custom-control-label" htmlFor="dark-mode-switch">Dark Mode</label>
                         </div>
                     </li>
                 </ul>
@@ -30,3 +47,13 @@ export class Navbar extends React.Component {
         )
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+    turnOnDarkMode: () => dispatch(turnDarkModeOn()),
+    turnOffDarkMode: () => dispatch(turnDarkModeOff())
+});
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(Navbar);

@@ -2,8 +2,10 @@ import React from 'react';
 import './Map.css';
 import * as mapboxgl from "mapbox-gl";
 import config from '../config.json';
+import {showFeatures, turnDarkModeOff, turnDarkModeOn} from "../actions/Actions";
+import {connect} from "react-redux";
 
-export class Map extends React.Component {
+class Map extends React.Component {
     componentDidMount() {
         this.map = new mapboxgl.Map({
             'container': 'map',
@@ -45,7 +47,14 @@ export class Map extends React.Component {
                     }
                 },
                 "layers": [
-
+                    {
+                        "id": "cartodb",
+                        "source": "cartodb",
+                        "type": "raster",
+                        "layout": {
+                            "visibility": "none"
+                        }
+                    },
                     {
                         "id": "osm",
                         "source": "OSM",
@@ -80,6 +89,7 @@ export class Map extends React.Component {
                 ]
             }
         });
+
         this.map.on('click', (e) => {
             var bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
             var features = [];
@@ -104,8 +114,20 @@ export class Map extends React.Component {
         });
     }
 
-    toggleDarkMode() {
+    componentDidUpdate(prevProps) {
+        if (this.props.darkMode != prevProps.darkMode) this.toggleDarkMode();
+    }
 
+    toggleDarkMode() {
+        if (this.props.darkMode == true) {
+            this.map.setLayoutProperty("osm", 'visibility', 'none');
+            this.map.setLayoutProperty("cartodb", 'visibility', 'visible');
+            this.map.setPaintProperty("geo", "line-color", "rgba(0,255,0,1)")
+        } else {
+            this.map.setLayoutProperty("cartodb", 'visibility', 'none');
+            this.map.setLayoutProperty("osm", 'visibility', 'visible');
+            this.map.setPaintProperty("geo", "line-color", "#000000")
+        }
     }
 
     render() {
@@ -116,3 +138,16 @@ export class Map extends React.Component {
         );
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+    showFeatures: (features) => dispatch(showFeatures(features))
+});
+
+const mapStateToProps = state => ({
+    darkMode: state.darkMode
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Map);
