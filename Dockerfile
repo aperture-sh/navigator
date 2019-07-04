@@ -1,18 +1,10 @@
-FROM node:latest AS dependencies
-
-COPY package.json .
-COPY package-lock.json .
-
-RUN npm install
-
-FROM dependencies AS build
+FROM node:latest AS build
 
 WORKDIR /app
 
-COPY --from=dependencies /node_modules ./node_modules
-
 COPY . .
 
+RUN npm install
 RUN npm run build
 
 FROM nginx:alpine
