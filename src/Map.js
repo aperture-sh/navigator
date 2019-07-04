@@ -23,7 +23,7 @@ export class Map extends React.Component {
                         "type": "vector",
                         "tiles": [config.tank + "/heatmap/{z}/{x}/{y}"],
                         "minzoom": 2,
-                        "maxzoom": 12
+                        "maxzoom": 10
                     },
                     'OSM': {
                         "type": "raster",
@@ -31,6 +31,15 @@ export class Map extends React.Component {
                             "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png",
                             "https://b.tile.openstreetmap.org/{z}/{x}/{y}.png",
                             "https://c.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        ],
+                        "tileSize": 256
+                    },
+                    'cartodb': {
+                        "type": "raster",
+                        "tiles": [
+                            "https://cartodb-basemaps-a.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png",
+                            "https://cartodb-basemaps-b.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png",
+                            "https://cartodb-basemaps-c.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
                         ],
                         "tileSize": 256
                     }
@@ -71,6 +80,32 @@ export class Map extends React.Component {
                 ]
             }
         });
+        this.map.on('click', (e) => {
+            var bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
+            var features = [];
+            if (this.map.getZoom() > 8) {
+                features = this.map.queryRenderedFeatures(bbox, {layers: ['geo']});
+            } else {
+                features = this.map.queryRenderedFeatures(bbox, {layers: ['geo2']});
+            }
+
+            console.log(features);
+            // console.log(features.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.properties.count),0));
+        });
+
+        this.map.on('zoom', (e) => {
+            if (this.map.getZoom() > 9) {
+                this.map.setLayoutProperty("geo2", 'visibility', 'none');
+
+            } else {
+
+                this.map.setLayoutProperty("geo2", 'visibility', 'visible');
+            }
+        });
+    }
+
+    toggleDarkMode() {
+
     }
 
     render() {
