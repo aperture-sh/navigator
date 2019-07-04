@@ -1,6 +1,7 @@
 FROM node:latest AS dependencies
 
 COPY package.json .
+COPY package-lock.json .
 
 RUN npm install
 
