@@ -1,6 +1,7 @@
 import React from 'react';
 import './Sidebar.css';
 import {connect} from "react-redux";
+import uuidv4 from 'uuid/v4';
 
 class Sidebar extends React.Component {
     render() {
@@ -12,7 +13,7 @@ class Sidebar extends React.Component {
                 <ul className="list-group">
                     { features.map(function(f){
                         return (
-                            <li key={f.properties.area} className="list-group-item">
+                            <li key={uuidv4()} className="list-group-item">
                                 <p>City: {f.properties.city}</p>
                                 <p>Postcode: {f.properties.postcode}</p>
                                 <p>County: {f.properties.county}</p>
