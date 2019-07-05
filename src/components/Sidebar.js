@@ -15,7 +15,9 @@ class Sidebar extends React.Component {
                             <li key={f.properties.area} className="list-group-item">
                                 <p>City: {f.properties.city}</p>
                                 <p>Postcode: {f.properties.postcode}</p>
+                                <p>County: {f.properties.county}</p>
                                 <p>Area in m^2: {f.properties.area}</p>
+                                <p>Lon: {f.properties.lon}, Lat: {f.properties.lat}</p>
                             </li>
                         );
                     })}
