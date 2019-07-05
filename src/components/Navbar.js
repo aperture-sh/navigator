@@ -19,8 +19,10 @@ class Navbar extends React.Component {
         }
     };
 
-    uploadFile = () => {
-        this.props.startUpload("testfile.json");
+    uploadFile = (e) => {
+        const file = e.target.files[0];
+        this.props.startUpload(file.name, file);
+        e.target.value = "";
     };
 
     render() {
@@ -34,12 +36,16 @@ class Navbar extends React.Component {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <button type="button" className="btn btn-warning" onClick={this.uploadFile}>Upload GeoJSON</button>
-                    </li>
-                    <li className="nav-item">
                         <div className="custom-control custom-switch">
                             <input type="checkbox" className="custom-control-input" id="dark-mode-switch" onChange={this.toggleDarkMode} checked={this.state.darkMode} />
                                 <label className="custom-control-label" htmlFor="dark-mode-switch">Dark Mode</label>
+                        </div>
+                    </li>
+                    <li className="nav-item">
+                        <div className="custom-file">
+                            <input type="file" className="custom-file-input" id="file-upload"
+                                   onChange={this.uploadFile}/>
+                            <label className="custom-file-label" htmlFor="customFile">GeoJSON Upload</label>
                         </div>
                     </li>
                     <li className="nav-item">
@@ -55,7 +61,7 @@ class Navbar extends React.Component {
 const mapDispatchToProps = dispatch => ({
     turnOnDarkMode: () => dispatch(turnDarkModeOn()),
     turnOffDarkMode: () => dispatch(turnDarkModeOff()),
-    startUpload: (fileName) => dispatch(startUpload(fileName))
+    startUpload: (fileName, file) => dispatch(startUpload(fileName, file))
 });
 
 export default connect(

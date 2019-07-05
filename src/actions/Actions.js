@@ -1,7 +1,7 @@
 import {
     DARK_MODE_OFF,
     DARK_MODE_ON,
-    FINISH_UPLOAD,
+    FINISH_UPLOAD, REMOVE_UPLOAD,
     SHOW_FEATURES,
     START_UPLOAD,
     UPDATE_UPLOAD_PROGRESS
@@ -20,20 +20,28 @@ export const showFeatures = (features) => ({
     payload: features
 });
 
-export const startUpload = (fileName) => ({
+export const startUpload = (fileName, file) => ({
     type: START_UPLOAD,
-    payload: fileName
-});
-
-export const finishUpload = (fileName) => ({
-    type: FINISH_UPLOAD,
-    payload: fileName
-});
-
-export const updateUploadProgress = (fileName, progress) => ({
-    type: UPDATE_UPLOAD_PROGRESS,
     payload: {
         fileName: fileName,
+        file: file
+    }
+});
+
+export const finishUpload = (fileId) => ({
+    type: FINISH_UPLOAD,
+    payload: fileId
+});
+
+export const removeUpload = (fileId) => ({
+    type: REMOVE_UPLOAD,
+    payload: fileId
+});
+
+export const updateUploadProgress = (fileId, progress) => ({
+    type: UPDATE_UPLOAD_PROGRESS,
+    payload: {
+        fileId: fileId,
         progress: progress
     }
 });

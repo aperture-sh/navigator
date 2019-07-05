@@ -26,12 +26,15 @@ class Sidebar extends React.Component {
                 <h5>File Uploads:</h5>
                 <ul className="list-group">
                     { Object.keys(files).map(function(file){
+                        const divStyle = {
+                            width: files[file].progress + '%'
+                        };
                         return (
                             <li key={file} className="list-group-item">
                                 <p>{files[file].fileName}</p>
                                 <div className="progress">
                                     <div className="progress-bar" role="progressbar"
-                                         aria-valuenow={files[file].progress} aria-valuemin="0" aria-valuemax="100">
+                                         aria-valuenow={files[file].progress} aria-valuemin="0" aria-valuemax="100" style={ divStyle }>
                                         { files[file].progress }%
                                     </div>
                                 </div>
