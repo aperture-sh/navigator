@@ -92,8 +92,8 @@ class Map extends React.Component {
         });
 
         this.map.on('click', (e) => {
-            var bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
-            var features = [];
+            let bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
+            let features = [];
             if (this.map.getZoom() > 8) {
                 features = this.map.queryRenderedFeatures(bbox, {layers: ['geo']});
             } else {
@@ -105,7 +105,7 @@ class Map extends React.Component {
             // console.log(features.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.properties.count),0));
         });
 
-        this.map.on('zoom', (e) => {
+        this.map.on('zoom', () => {
             if (this.map.getZoom() > 9) {
                 this.map.setLayoutProperty("geo2", 'visibility', 'none');
 
