@@ -5,10 +5,21 @@ import {connect} from "react-redux";
 class Sidebar extends React.Component {
     render() {
         const files = this.props.files;
+        const features = this.props.features;
         return (
             <div className="sidebar">
                 <h5>Feature Information:</h5>
-
+                <ul className="list-group">
+                    { features.map(function(f){
+                        return (
+                            <li key={f.properties.area} className="list-group-item">
+                                <p>City: {f.properties.city}</p>
+                                <p>Postcode: {f.properties.postcode}</p>
+                                <p>Area in m^2: {f.properties.area}</p>
+                            </li>
+                        );
+                    })}
+                </ul>
                 <h5>File Uploads:</h5>
                 <ul className="list-group">
                     { Object.keys(files).map(function(file){
@@ -31,7 +42,8 @@ class Sidebar extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-   files: state.files
+    files: state.files,
+    features: state.features
 });
 
 export default connect(mapStateToProps)(Sidebar)
