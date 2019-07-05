@@ -2,7 +2,7 @@
   "name": "navigator",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "/navigator",
+  "homepage": "/navigator",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "mapbox-gl": "^1.1.0",
@@ -10,7 +10,8 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
     "react-scripts": "3.0.1",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

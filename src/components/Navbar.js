@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 import {connect} from "react-redux";
-import {turnDarkModeOff, turnDarkModeOn} from "../actions/Actions";
+import {startUpload, turnDarkModeOff, turnDarkModeOn} from "../actions/Actions";
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -19,6 +19,10 @@ class Navbar extends React.Component {
         }
     };
 
+    uploadFile = () => {
+        this.props.startUpload("testfile.json");
+    };
+
     render() {
         return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,7 +37,7 @@ class Navbar extends React.Component {
                         <a className="nav-link" href="/">Reset View</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/">Upload GeoJSON</a>
+                        <button type="button" className="btn btn-warning" onClick={this.uploadFile}>Upload GeoJSON</button>
                     </li>
                     <li className="nav-item">
                         <div className="custom-control custom-switch">
@@ -50,7 +54,8 @@ class Navbar extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
     turnOnDarkMode: () => dispatch(turnDarkModeOn()),
-    turnOffDarkMode: () => dispatch(turnDarkModeOff())
+    turnOffDarkMode: () => dispatch(turnDarkModeOff()),
+    startUpload: (fileName) => dispatch(startUpload(fileName))
 });
 
 export default connect(

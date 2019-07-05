@@ -1,3 +1,7 @@
 export const DARK_MODE_ON = "DARK_MODE_ON";
 export const DARK_MODE_OFF = "DARK_MODE_OFF";
 export const SHOW_FEATURES = "SHOW_FEATURE";
+
+export const START_UPLOAD = "START_UPLOAD";
+export const UPDATE_UPLOAD_PROGRESS = "UPDATE_UPLOAD_PROGRESS";
+export const FINISH_UPLOAD = "FINISH_UPLOAD";
