@@ -34,9 +34,6 @@ class Navbar extends React.Component {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <a className="nav-link" href="/">Reset View</a>
-                    </li>
-                    <li className="nav-item">
                         <button type="button" className="btn btn-warning" onClick={this.uploadFile}>Upload GeoJSON</button>
                     </li>
                     <li className="nav-item">
@@ -44,6 +41,9 @@ class Navbar extends React.Component {
                             <input type="checkbox" className="custom-control-input" id="dark-mode-switch" onChange={this.toggleDarkMode} checked={this.state.darkMode} />
                                 <label className="custom-control-label" htmlFor="dark-mode-switch">Dark Mode</label>
                         </div>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="/">Show Import Errors</a>
                     </li>
                 </ul>
             </div>
