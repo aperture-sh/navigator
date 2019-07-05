@@ -12,7 +12,13 @@
   width: 100%;
 }
 
+.main-container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .main-container .row {
+
   height: calc(100vh - 56px);
 }
 
