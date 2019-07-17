@@ -6,7 +6,7 @@ import {startUpload, turnDarkModeOff, turnDarkModeOn} from "../actions/Actions";
 class Navbar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {darkMode: false};
+        this.state = {darkMode: true};
     }
 
     toggleDarkMode = () => {

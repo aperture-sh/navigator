@@ -10,7 +10,7 @@ import {
 import uuidv4 from 'uuid/v4';
 
 const initialState = {
-    darkMode: false,
+    darkMode: true,
     features: [],
     files: {},
     config: undefined

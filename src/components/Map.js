@@ -61,15 +61,15 @@ class Map extends React.Component {
                     {
                         "id": "cartodb",
                         "source": "cartodb",
-                        "type": "raster",
-                        "layout": {
-                            "visibility": "none"
-                        }
+                        "type": "raster"
                     },
                     {
                         "id": "osm",
                         "source": "OSM",
-                        "type": "raster"
+                        "type": "raster",
+                        "layout": {
+                            "visibility": "none"
+                        }
                     },
                     {
                         "id": "geo",
