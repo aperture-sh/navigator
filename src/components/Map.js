@@ -6,13 +6,14 @@ import {connect} from "react-redux";
 
 class Map extends React.Component {
     componentDidMount() {
-
+        this.initiated = false;
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.darkMode !== prevProps.darkMode) this.toggleDarkMode();
-        if (this.props.config) {
+        if (this.props.config && !this.initiated) {
             this.initMap();
+            this.initiated = true;
         }
     }
 
