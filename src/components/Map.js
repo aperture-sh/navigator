@@ -77,8 +77,8 @@ class Map extends React.Component {
                         "source-layer": "io.marauder.tank",
                         "type": "fill",
                         "paint": {
-                            "fill-outline-color": "#000000",
-                            "fill-color": "rgba(1,1,1,0.2)"
+                            "fill-outline-color": "rgba(0,255,0,1)",
+                            "fill-color": "rgba(0,255,0,0.2)"
                         }
                     },
                     {
