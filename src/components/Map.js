@@ -1,12 +1,22 @@
 import React from 'react';
 import './Map.css';
 import * as mapboxgl from "mapbox-gl";
-import config from '../config.json';
 import {showFeatures} from "../actions/Actions";
 import {connect} from "react-redux";
 
 class Map extends React.Component {
     componentDidMount() {
+
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.darkMode !== prevProps.darkMode) this.toggleDarkMode();
+        if (this.props.config) {
+            this.initMap();
+        }
+    }
+
+    initMap() {
         this.map = new mapboxgl.Map({
             'container': 'map',
             'maxTileCacheSize': 5,
@@ -18,12 +28,12 @@ class Map extends React.Component {
                 'sources': {
                     'tank': {
                         "type": "vector",
-                        "tiles": [config.tank + "/tile/{z}/{x}/{y}"],
+                        "tiles": [this.props.config.tank + "/tile/{z}/{x}/{y}"],
                         "minzoom": 9
                     },
                     'tank2': {
                         "type": "vector",
-                        "tiles": [config.tank + "/heatmap/{z}/{x}/{y}"],
+                        "tiles": [this.props.config.tank + "/heatmap/{z}/{x}/{y}"],
                         "minzoom": 2,
                         "maxzoom": 10
                     },
@@ -116,10 +126,6 @@ class Map extends React.Component {
         });
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.darkMode !== prevProps.darkMode) this.toggleDarkMode();
-    }
-
     toggleDarkMode() {
         if (this.props.darkMode === true) {
             this.map.setLayoutProperty("osm", 'visibility', 'none');
@@ -148,7 +154,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-    darkMode: state.darkMode
+    darkMode: state.darkMode,
+    config: state.config
 });
 
 export default connect(

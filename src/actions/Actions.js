@@ -1,4 +1,5 @@
 import {
+    CONFIG_CHANGE,
     DARK_MODE_OFF,
     DARK_MODE_ON,
     FINISH_UPLOAD, REMOVE_UPLOAD,
@@ -44,4 +45,9 @@ export const updateUploadProgress = (fileId, progress) => ({
         fileId: fileId,
         progress: progress
     }
+});
+
+export const configChange = (config) => ({
+    type: CONFIG_CHANGE,
+    payload: config
 });

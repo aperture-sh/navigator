@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {finishUpload, removeUpload, updateUploadProgress} from "../actions/Actions";
-import config from '../config.json'
 
 class FileUpload extends React.PureComponent {
     constructor(props) {
@@ -32,7 +31,7 @@ class FileUpload extends React.PureComponent {
 
                 const formData = new FormData();
                 formData.append("test", file);
-                fetch(`${config.tank}/`, {
+                fetch(`${this.props.config.tank}/`, {
                     method: 'POST',
                     headers: {
                         "Content-Type": file.file.type
@@ -73,7 +72,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-    files: state.files
+    files: state.files,
+    config: state.config
 });
 
 export default connect(

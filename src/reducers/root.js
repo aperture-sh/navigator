@@ -1,4 +1,5 @@
 import {
+    CONFIG_CHANGE,
     DARK_MODE_OFF,
     DARK_MODE_ON,
     FINISH_UPLOAD,
@@ -11,7 +12,8 @@ import uuidv4 from 'uuid/v4';
 const initialState = {
     darkMode: false,
     features: [],
-    files: {}
+    files: {},
+    config: undefined
 };
 
 const app = (state = initialState, action) => {
@@ -49,6 +51,10 @@ const app = (state = initialState, action) => {
             files[action.payload.fileId].progress = action.payload.progress;
             return { ...state,
                 files: files
+            };
+        case CONFIG_CHANGE:
+            return { ...state,
+                config: action.payload
             };
         default:
             return state;
