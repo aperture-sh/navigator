@@ -75,12 +75,13 @@ class Exhauster extends React.Component {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title">Modal title</h5>
+                            <h5 className="modal-title">Exhauster Control Panel</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.props.closeExhauster}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div className="modal-body">
+                            <h6>The following features were not imported due database type collisions. Please correct and submit features, or dismiss them completly.</h6>
                             <ul>
                             {   this.props.features.map((f) => {
                                     return (
