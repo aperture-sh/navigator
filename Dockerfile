@@ -1,5 +1,7 @@
 FROM node:latest AS build
 
+ARG GENERATE_SOURCEMAP=false
+
 WORKDIR /app
 
 COPY . .
