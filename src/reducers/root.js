@@ -22,6 +22,7 @@ const initialState = {
 
 const app = (state = initialState, action) => {
     let files = {};
+    let tmpFeatures = [];
     let uuid = uuidv4();
 
     switch (action.type) {
@@ -69,11 +70,12 @@ const app = (state = initialState, action) => {
                 modal: false
             };
         case ADD_FEATURES:
+            Object.assign(tmpFeatures, state.exhausted_features);
+            tmpFeatures = tmpFeatures.concat(action.payload);
             return { ...state,
-                exhausted_features: action.payload
+                exhausted_features: tmpFeatures
             };
         case DELETE_FEATURE || SUBMIT_FEATURE:
-            let tmpFeatures = [];
             Object.assign(tmpFeatures, state.exhausted_features);
             let tmp = tmpFeatures.find((f) => f._id.$oid === action.payload);
             tmpFeatures.splice(tmpFeatures.indexOf(tmp), 1);
@@ -81,12 +83,11 @@ const app = (state = initialState, action) => {
                 exhausted_features: tmpFeatures
             };
         case CHANGE_FEATURE_PROP:
-            let tmpFeatures2 = [];
-            Object.assign(tmpFeatures2, state.exhausted_features);
-            let tmp2 = tmpFeatures2.find((f) => f._id.$oid === action.payload.id);
+            Object.assign(tmpFeatures, state.exhausted_features);
+            let tmp2 = tmpFeatures.find((f) => f._id.$oid === action.payload.id);
             tmp2.properties[action.payload.key] = action.payload.value;
             return { ...state,
-                exhausted_features: tmpFeatures2
+                exhausted_features: tmpFeatures
             };
         default:
             return state;
