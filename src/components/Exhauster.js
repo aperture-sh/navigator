@@ -22,8 +22,29 @@ class Exhauster extends React.Component {
         }
     }
 
-    dataChanged() {
+    saveChanges(f) {
+        this.deleteFromExhauster(f);
+        let gFeatures = {};
+        Object.assign(gFeatures, f);
+        delete gFeatures._id;
+        fetch(`${this.props.config.tank}`, {
+            method: 'POST',
+            body: JSON.stringify(gFeatures)
+        }).then(res => {
 
+        });
+    }
+
+    dismissFeature(f) {
+        this.deleteFromExhauster(f)
+    }
+
+    deleteFromExhauster(f) {
+        fetch(`${this.props.config.exhauster.url}/${f._id.$oid}`, {
+            method: 'DELETE'
+        }).then(res => {
+
+        });
     }
 
     render() {
@@ -48,7 +69,7 @@ class Exhauster extends React.Component {
                                                        <div className="form-group" key={f._id.$oid + "-" + prop}>
                                                            <label htmlFor={f._id.$oid + "-" + prop}>{prop}</label>
                                                            <input type="text" className="form-control" id={f._id.$oid + "-" + prop}
-                                                                  placeholder={"Enter " + prop} value={f.properties[prop]} onChange={this.dataChanged} />
+                                                                  placeholder={"Enter " + prop} defaultValue={f.properties[prop]} />
 
                                                        </div>
                                                    )
@@ -56,8 +77,8 @@ class Exhauster extends React.Component {
                                             }
 
                                             <p>
-                                                <button type="button" className="btn btn-danger">Dismiss Feature</button>
-                                                <button type="button" className="btn btn-primary">Save changes</button>
+                                                <button type="button" className="btn btn-danger" onClick={() => this.dismissFeature(f)}>Dismiss Feature</button>
+                                                <button type="button" className="btn btn-primary" onClick={() => this.saveChanges(f)}>Save changes</button>
                                             </p>
                                         </li>
 
