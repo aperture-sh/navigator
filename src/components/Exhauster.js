@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {closeExhauster, addExhaustedFeatures} from "../actions/Actions";
+import {closeExhauster, addExhaustedFeatures, submitExhaustedFeature, deleteExhaustedFeature} from "../actions/Actions";
 import './Exhauster.css';
 
 class Exhauster extends React.Component {
@@ -31,7 +31,7 @@ class Exhauster extends React.Component {
             method: 'POST',
             body: JSON.stringify(gFeatures)
         }).then(res => {
-
+            this.props.submitFeature(f);
         });
     }
 
@@ -43,7 +43,7 @@ class Exhauster extends React.Component {
         fetch(`${this.props.config.exhauster.url}/${f._id.$oid}`, {
             method: 'DELETE'
         }).then(res => {
-
+            this.props.deleteFeature(f);
         });
     }
 
@@ -100,7 +100,9 @@ class Exhauster extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
     closeExhauster: () => dispatch(closeExhauster()),
-    addFeatures: (features) => dispatch(addExhaustedFeatures(features))
+    addFeatures: (features) => dispatch(addExhaustedFeatures(features)),
+    deleteFeature: (feature) => dispatch(deleteExhaustedFeature(feature._id.$oid)),
+    submitFeature: (feature) => dispatch(submitExhaustedFeature(feature._id.$oid))
 });
 
 

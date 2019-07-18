@@ -3,10 +3,10 @@ import {
     CLOSE_EXHAUSTER,
     CONFIG_CHANGE,
     DARK_MODE_OFF,
-    DARK_MODE_ON,
+    DARK_MODE_ON, DELETE_FEATURE,
     FINISH_UPLOAD, OPEN_EXHAUSTER, REMOVE_UPLOAD,
     SHOW_FEATURES,
-    START_UPLOAD,
+    START_UPLOAD, SUBMIT_FEATURE,
     UPDATE_UPLOAD_PROGRESS
 } from "./ActionsTypes";
 
@@ -65,4 +65,14 @@ export const closeExhauster = () => ({
 export const addExhaustedFeatures = (features) => ({
     type: ADD_FEATURES,
     payload: features
+});
+
+export const deleteExhaustedFeature = (id) => ({
+    type: DELETE_FEATURE,
+    payload: id
+});
+
+export const submitExhaustedFeature = (id) => ({
+    type: SUBMIT_FEATURE,
+    payload: id
 });

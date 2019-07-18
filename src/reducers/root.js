@@ -3,11 +3,11 @@ import {
     CLOSE_EXHAUSTER,
     CONFIG_CHANGE,
     DARK_MODE_OFF,
-    DARK_MODE_ON,
+    DARK_MODE_ON, DELETE_FEATURE,
     FINISH_UPLOAD, OPEN_EXHAUSTER,
     REMOVE_UPLOAD,
     SHOW_FEATURES,
-    START_UPLOAD, UPDATE_UPLOAD_PROGRESS
+    START_UPLOAD, SUBMIT_FEATURE, UPDATE_UPLOAD_PROGRESS
 } from "../actions/ActionsTypes";
 import uuidv4 from 'uuid/v4';
 
@@ -71,6 +71,14 @@ const app = (state = initialState, action) => {
         case ADD_FEATURES:
             return { ...state,
                 exhausted_features: action.payload
+            };
+        case DELETE_FEATURE || SUBMIT_FEATURE:
+            let exhaustedFeatures = {};
+            Object.assign(exhaustedFeatures, state.exhausted_features);
+            let index = exhaustedFeatures.find((f) => f._id.$oid === action.payload);
+            exhaustedFeatures.splice(index, 1);
+            return { ...state,
+                exhausted_features: exhaustedFeatures
             };
         default:
             return state;
