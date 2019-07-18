@@ -27,7 +27,7 @@ class Exhauster extends React.Component {
         let gFeatures = {};
         Object.assign(gFeatures, f);
         delete gFeatures._id;
-        fetch(`${this.props.config.tank}`, {
+        fetch(`${this.props.config.tank}/`, {
             method: 'POST',
             body: JSON.stringify(gFeatures)
         }).then(res => {
