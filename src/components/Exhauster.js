@@ -17,16 +17,16 @@ class Exhauster extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.config && !this.initiated) {
-            this.loadFeatures(20, this.offset)
+            this.loadFeatures(20)
         }
         if (this.props.config && this.initiated && this.props.features.length <= 10) {
-            this.loadFeatures(20, this.offset)
+            this.loadFeatures(20)
         }
 
     }
 
-    loadFeatures(limit, offset) {
-        fetch(`${this.props.config.exhauster.url}/?limit=${limit}&offset=${offset}`, {
+    loadFeatures(limit) {
+        fetch(`${this.props.config.exhauster.url}/?limit=${limit}&offset=${this.offset}`, {
             method: 'GET'
         })
             .then(res => res.json()).then(res => {
