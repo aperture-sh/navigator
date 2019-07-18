@@ -5,7 +5,7 @@ import {
     addExhaustedFeatures,
     submitExhaustedFeature,
     deleteExhaustedFeature,
-    changeExhaustedFeatureProperty
+    changeExhaustedFeatureProperty, initExhaustedFeatures
 } from "../actions/Actions";
 import './Exhauster.css';
 
@@ -17,7 +17,7 @@ class Exhauster extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.config && !this.initiated) {
-            this.loadFeatures(20)
+            this.resetView();
         }
         if (this.props.config && this.initiated && this.props.features.length <= 10) {
             this.loadFeatures(20)
@@ -30,11 +30,22 @@ class Exhauster extends React.Component {
             method: 'GET'
         })
             .then(res => res.json()).then(res => {
-            console.log(res);
             this.initiated = true;
             this.offset = this.offset + limit;
             this.props.addFeatures(res.features)
         });
+    }
+
+    resetView() {
+        fetch(`${this.props.config.exhauster.url}/?limit=20&offset=0`, {
+            method: 'GET'
+        })
+            .then(res => res.json()).then(res => {
+            this.initiated = true;
+            this.props.initFeatures(res.features);
+            this.offset = 20;
+        });
+
     }
 
     saveChanges(f) {
@@ -123,6 +134,7 @@ class Exhauster extends React.Component {
 const mapDispatchToProps = dispatch => ({
     closeExhauster: () => dispatch(closeExhauster()),
     addFeatures: (features) => dispatch(addExhaustedFeatures(features)),
+    initFeatures: (features) => dispatch(initExhaustedFeatures(features)),
     deleteFeature: (feature) => dispatch(deleteExhaustedFeature(feature._id.$oid)),
     submitFeature: (feature) => dispatch(submitExhaustedFeature(feature._id.$oid)),
     changeFeature: (feature, key, value) => dispatch(changeExhaustedFeatureProperty(feature._id.$oid, key, value))

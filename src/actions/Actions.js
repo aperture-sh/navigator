@@ -4,7 +4,7 @@ import {
     CONFIG_CHANGE,
     DARK_MODE_OFF,
     DARK_MODE_ON, DELETE_FEATURE,
-    FINISH_UPLOAD, OPEN_EXHAUSTER, REMOVE_UPLOAD,
+    FINISH_UPLOAD, INIT_FEATURES, OPEN_EXHAUSTER, REMOVE_UPLOAD,
     SHOW_FEATURES,
     START_UPLOAD, SUBMIT_FEATURE,
     UPDATE_UPLOAD_PROGRESS
@@ -84,4 +84,9 @@ export const changeExhaustedFeatureProperty = (id, key, value) => ({
        key: key,
        value: value
    }
+});
+
+export const initExhaustedFeatures = (features) => ({
+    type: INIT_FEATURES,
+    payload: features
 });
