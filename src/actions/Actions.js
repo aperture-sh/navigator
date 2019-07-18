@@ -1,5 +1,5 @@
 import {
-    ADD_FEATURES,
+    ADD_FEATURES, CHANGE_FEATURE_PROP,
     CLOSE_EXHAUSTER,
     CONFIG_CHANGE,
     DARK_MODE_OFF,
@@ -75,4 +75,13 @@ export const deleteExhaustedFeature = (id) => ({
 export const submitExhaustedFeature = (id) => ({
     type: SUBMIT_FEATURE,
     payload: id
+});
+
+export const changeExhaustedFeatureProperty = (id, key, value) => ({
+   type: CHANGE_FEATURE_PROP,
+   payload: {
+       id: id,
+       key: key,
+       value: value
+   }
 });

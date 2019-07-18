@@ -1,6 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
-import {closeExhauster, addExhaustedFeatures, submitExhaustedFeature, deleteExhaustedFeature} from "../actions/Actions";
+import {
+    closeExhauster,
+    addExhaustedFeatures,
+    submitExhaustedFeature,
+    deleteExhaustedFeature,
+    changeExhaustedFeatureProperty
+} from "../actions/Actions";
 import './Exhauster.css';
 
 class Exhauster extends React.Component {
@@ -47,6 +53,11 @@ class Exhauster extends React.Component {
         });
     }
 
+    handleChangeInput(e, f) {
+        let target = e.target;
+        this.props.changeFeature(f, target.name.split('-')[1], target.value)
+    }
+
     render() {
         return(
             <div className={"modal " + (this.props.modal ? "exhauster-open" : "")} tabIndex="-1" role="dialog">
@@ -68,8 +79,8 @@ class Exhauster extends React.Component {
                                                    return (
                                                        <div className="form-group" key={f._id.$oid + "-" + prop}>
                                                            <label htmlFor={f._id.$oid + "-" + prop}>{prop}</label>
-                                                           <input type="text" className="form-control" id={f._id.$oid + "-" + prop}
-                                                                  placeholder={"Enter " + prop} defaultValue={f.properties[prop]} />
+                                                           <input type="text" className="form-control" id={f._id.$oid + "-" + prop} name={f._id.$oid + "-" + prop}
+                                                                  placeholder={"Enter " + prop} value={f.properties[prop]} onChange={(e) => this.handleChangeInput(e,f)} />
 
                                                        </div>
                                                    )
@@ -81,7 +92,6 @@ class Exhauster extends React.Component {
                                                 <button type="button" className="btn btn-primary" onClick={() => this.saveChanges(f)}>Save changes</button>
                                             </p>
                                         </li>
-
                                     )
                                 })
                             }
@@ -102,7 +112,8 @@ const mapDispatchToProps = dispatch => ({
     closeExhauster: () => dispatch(closeExhauster()),
     addFeatures: (features) => dispatch(addExhaustedFeatures(features)),
     deleteFeature: (feature) => dispatch(deleteExhaustedFeature(feature._id.$oid)),
-    submitFeature: (feature) => dispatch(submitExhaustedFeature(feature._id.$oid))
+    submitFeature: (feature) => dispatch(submitExhaustedFeature(feature._id.$oid)),
+    changeFeature: (feature, key, value) => dispatch(changeExhaustedFeatureProperty(feature._id.$oid, key, value))
 });
 
 

@@ -1,5 +1,5 @@
 import {
-    ADD_FEATURES,
+    ADD_FEATURES, CHANGE_FEATURE_PROP,
     CLOSE_EXHAUSTER,
     CONFIG_CHANGE,
     DARK_MODE_OFF,
@@ -73,12 +73,20 @@ const app = (state = initialState, action) => {
                 exhausted_features: action.payload
             };
         case DELETE_FEATURE || SUBMIT_FEATURE:
-            let exhaustedFeatures = [];
-            Object.assign(exhaustedFeatures, state.exhausted_features);
-            let index = exhaustedFeatures.find((f) => f._id.$oid === action.payload);
-            exhaustedFeatures.splice(index, 1);
+            let tmpFeatures = [];
+            Object.assign(tmpFeatures, state.exhausted_features);
+            let tmp = tmpFeatures.find((f) => f._id.$oid === action.payload);
+            tmpFeatures.splice(tmpFeatures.indexOf(tmp), 1);
             return { ...state,
-                exhausted_features: exhaustedFeatures
+                exhausted_features: tmpFeatures
+            };
+        case CHANGE_FEATURE_PROP:
+            let tmpFeatures2 = [];
+            Object.assign(tmpFeatures2, state.exhausted_features);
+            let tmp2 = tmpFeatures2.find((f) => f._id.$oid === action.payload.id);
+            tmp2.properties[action.payload.key] = action.payload.value;
+            return { ...state,
+                exhausted_features: tmpFeatures2
             };
         default:
             return state;
