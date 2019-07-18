@@ -13,13 +13,27 @@ class Sidebar extends React.Component {
                 <ul className="list-group">
                     { features.map(function(f){
                         return (
-                            <li key={uuidv4()} className="list-group-item">
-                                <p>City: {f.properties.city}</p>
-                                <p>Postcode: {f.properties.postcode}</p>
-                                <p>County: {f.properties.county}</p>
-                                <p>Area in m^2: {f.properties.area}</p>
-                                <p>Lon: {f.properties.lon}, Lat: {f.properties.lat}</p>
-                            </li>
+                            <ul>
+                                {   this.props.features.map((f) => {
+                                    return (
+                                        <li key={uuidv4()} className="list-group-item">
+                                            {
+                                                Object.keys(f.properties).map(prop => {
+                                                    return (
+                                                        <p>prop: f.properties[prop]</p>
+                                                    )
+                                                })
+                                            }
+
+                                            <p>
+                                                <button type="button" className="btn btn-danger" onClick={() => this.dismissFeature(f)}>Dismiss Feature</button>
+                                                <button type="button" className="btn btn-primary" onClick={() => this.saveChanges(f)}>Save changes</button>
+                                            </p>
+                                        </li>
+                                    )
+                                })
+                                }
+                            </ul>
                         );
                     })}
                 </ul>
