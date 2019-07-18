@@ -73,7 +73,7 @@ const app = (state = initialState, action) => {
                 exhausted_features: action.payload
             };
         case DELETE_FEATURE || SUBMIT_FEATURE:
-            let exhaustedFeatures = {};
+            let exhaustedFeatures = [];
             Object.assign(exhaustedFeatures, state.exhausted_features);
             let index = exhaustedFeatures.find((f) => f._id.$oid === action.payload);
             exhaustedFeatures.splice(index, 1);
