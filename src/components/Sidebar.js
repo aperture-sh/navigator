@@ -20,7 +20,7 @@ class Sidebar extends React.Component {
                                             {
                                                 Object.keys(f.properties).map(prop => {
                                                     return (
-                                                        <p>prop: f.properties[prop]</p>
+                                                        <p>{prop}: {f.properties[prop]}</p>
                                                     )
                                                 })
                                             }
