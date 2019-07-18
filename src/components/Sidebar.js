@@ -24,11 +24,6 @@ class Sidebar extends React.Component {
                                                     )
                                                 })
                                             }
-
-                                            <p>
-                                                <button type="button" className="btn btn-danger" onClick={() => this.dismissFeature(f)}>Dismiss Feature</button>
-                                                <button type="button" className="btn btn-primary" onClick={() => this.saveChanges(f)}>Save changes</button>
-                                            </p>
                                         </li>
                                     )
                                 })
