@@ -1,8 +1,10 @@
 import {
+    ADD_FEATURES,
+    CLOSE_EXHAUSTER,
     CONFIG_CHANGE,
     DARK_MODE_OFF,
     DARK_MODE_ON,
-    FINISH_UPLOAD,
+    FINISH_UPLOAD, OPEN_EXHAUSTER,
     REMOVE_UPLOAD,
     SHOW_FEATURES,
     START_UPLOAD, UPDATE_UPLOAD_PROGRESS
@@ -12,8 +14,10 @@ import uuidv4 from 'uuid/v4';
 const initialState = {
     darkMode: true,
     features: [],
+    exhausted_features: [],
     files: {},
-    config: undefined
+    config: undefined,
+    modal: false
 };
 
 const app = (state = initialState, action) => {
@@ -55,6 +59,18 @@ const app = (state = initialState, action) => {
         case CONFIG_CHANGE:
             return { ...state,
                 config: action.payload
+            };
+        case OPEN_EXHAUSTER:
+            return { ...state,
+                modal: true
+            };
+        case CLOSE_EXHAUSTER:
+            return { ...state,
+                modal: false
+            };
+        case ADD_FEATURES:
+            return { ...state,
+                exhausted_features: action.payload
             };
         default:
             return state;

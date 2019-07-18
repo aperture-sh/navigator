@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 import {connect} from "react-redux";
-import {startUpload, turnDarkModeOff, turnDarkModeOn} from "../actions/Actions";
+import {startUpload, turnDarkModeOff, turnDarkModeOn, openExhauster} from "../actions/Actions";
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -49,7 +49,7 @@ class Navbar extends React.Component {
                         </div>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/">Show Import Errors</a>
+                        <button type="button" className="btn btn-warning" onClick={this.props.openExhauster}>Show Import Errors</button>
                     </li>
                 </ul>
             </div>
@@ -61,7 +61,8 @@ class Navbar extends React.Component {
 const mapDispatchToProps = dispatch => ({
     turnOnDarkMode: () => dispatch(turnDarkModeOn()),
     turnOffDarkMode: () => dispatch(turnDarkModeOff()),
-    startUpload: (fileName, file) => dispatch(startUpload(fileName, file))
+    startUpload: (fileName, file) => dispatch(startUpload(fileName, file)),
+    openExhauster: () => dispatch(openExhauster())
 });
 
 export default connect(

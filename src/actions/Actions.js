@@ -1,8 +1,10 @@
 import {
+    ADD_FEATURES,
+    CLOSE_EXHAUSTER,
     CONFIG_CHANGE,
     DARK_MODE_OFF,
     DARK_MODE_ON,
-    FINISH_UPLOAD, REMOVE_UPLOAD,
+    FINISH_UPLOAD, OPEN_EXHAUSTER, REMOVE_UPLOAD,
     SHOW_FEATURES,
     START_UPLOAD,
     UPDATE_UPLOAD_PROGRESS
@@ -50,4 +52,17 @@ export const updateUploadProgress = (fileId, progress) => ({
 export const configChange = (config) => ({
     type: CONFIG_CHANGE,
     payload: config
+});
+
+export const openExhauster = () => ({
+   type: OPEN_EXHAUSTER
+});
+
+export const closeExhauster = () => ({
+    type: CLOSE_EXHAUSTER
+});
+
+export const addExhaustedFeatures = (features) => ({
+    type: ADD_FEATURES,
+    payload: features
 });

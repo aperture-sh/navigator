@@ -6,6 +6,7 @@ import Sidebar from "./components/Sidebar";
 import FileUpload from "./logic/FileUpload";
 import {connect} from "react-redux";
 import {configChange} from "./actions/Actions";
+import Exhauster from "./components/Exhauster";
 
 class App extends React.Component {
     componentDidMount() {
@@ -16,6 +17,7 @@ class App extends React.Component {
         return (
             <div className="App">
                 <FileUpload/>
+                <Exhauster />
                 <Navbar/>
                 <div className="container-fluid main-container">
                     <div className="row no-gutters">

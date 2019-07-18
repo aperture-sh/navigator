@@ -8,3 +8,8 @@ export const FINISH_UPLOAD = "FINISH_UPLOAD";
 export const REMOVE_UPLOAD = "REMOVE_UPLOAD";
 
 export const CONFIG_CHANGE = "CONFIG_CHANGE";
+
+export const OPEN_EXHAUSTER = "OPEN_EXHAUSTER";
+export const CLOSE_EXHAUSTER = "CLOSE_EXHAUSTER";
+
+export const ADD_FEATURES = "ADD_FEATURES";
