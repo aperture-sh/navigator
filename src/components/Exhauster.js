@@ -12,20 +12,29 @@ import './Exhauster.css';
 class Exhauster extends React.Component {
     componentDidMount() {
        this.initiated = false;
-
+       this.offset = 0;
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.config && !this.initiated) {
-            fetch(`${this.props.config.exhauster.url}/?limit=20`, {
-                method: 'GET'
-            })
-                .then(res => res.json()).then(res => {
-                    console.log(res);
-                    this.initiated = true;
-                    this.props.addFeatures(res.features)
-                });
+            this.loadFeatures(20, this.offset)
         }
+        if (this.props.config && this.initiated && this.props.features.length <= 10) {
+            this.loadFeatures(20, this.offset)
+        }
+
+    }
+
+    loadFeatures(limit, offset) {
+        fetch(`${this.props.config.exhauster.url}/?limit=${limit}&offset=${offset}`, {
+            method: 'GET'
+        })
+            .then(res => res.json()).then(res => {
+            console.log(res);
+            this.initiated = true;
+            this.offset = this.offset + limit;
+            this.props.addFeatures(res.features)
+        });
     }
 
     saveChanges(f) {
@@ -38,11 +47,12 @@ class Exhauster extends React.Component {
             body: JSON.stringify(gFeatures)
         }).then(res => {
             this.props.submitFeature(f);
+            this.offset = this.offset - 1;
         });
     }
 
     dismissFeature(f) {
-        this.deleteFromExhauster(f)
+        this.deleteFromExhauster(f);
     }
 
     deleteFromExhauster(f) {
@@ -50,6 +60,7 @@ class Exhauster extends React.Component {
             method: 'DELETE'
         }).then(res => {
             this.props.deleteFeature(f);
+            this.offset = this.offset - 1;
         });
     }
 
