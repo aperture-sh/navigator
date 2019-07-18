@@ -14,8 +14,6 @@ class Sidebar extends React.Component {
                     { features.map(function(f){
                         return (
                             <ul>
-                                {   this.props.features.map((f) => {
-                                    return (
                                         <li key={uuidv4()} className="list-group-item">
                                             {
                                                 Object.keys(f.properties).map(prop => {
@@ -25,9 +23,6 @@ class Sidebar extends React.Component {
                                                 })
                                             }
                                         </li>
-                                    )
-                                })
-                                }
                             </ul>
                         );
                     })}
