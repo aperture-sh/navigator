@@ -15,6 +15,10 @@ class Map extends React.Component {
             this.initMap();
             this.initiated = true;
         }
+
+        if (this.props.baselayer !== prevProps.baselayer) {
+            this.toggleBaseLayer();
+        }
     }
 
     initMap() {
@@ -141,6 +145,19 @@ class Map extends React.Component {
         }
     }
 
+    toggleBaseLayer() {
+        if (this.props.baselayer === false) {
+            this.map.setLayoutProperty("osm", 'visibility', 'none');
+            this.map.setLayoutProperty("cartodb", 'visibility', 'none');
+        } else {
+            if (this.props.darkMode === true) {
+                this.map.setLayoutProperty("cartodb", 'visibility', 'visible');
+            } else {
+                this.map.setLayoutProperty("osm", 'visibility', 'visible');
+            }
+        }
+    }
+
     render() {
         return (
             <div id="map">
@@ -156,7 +173,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
     darkMode: state.darkMode,
-    config: state.config
+    config: state.config,
+    baselayer: state.baselayer
 });
 
 export default connect(

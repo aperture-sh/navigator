@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navbar.css';
 import {connect} from "react-redux";
-import {startUpload, turnDarkModeOff, turnDarkModeOn, openExhauster} from "../actions/Actions";
+import {startUpload, turnDarkModeOff, turnDarkModeOn, openExhauster, hideBaselayer, showBaselayer} from "../actions/Actions";
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -51,6 +51,12 @@ class Navbar extends React.Component {
                     <li className="nav-item">
                         <button type="button" className="btn btn-warning" onClick={this.props.openExhauster}>Show Import Errors</button>
                     </li>
+                    <li className="nav-item">
+                        <button type="button" className="btn btn-default" aria-label="Left Align">
+                            <i className={"material-icons " + (this.props.baselayer ? "" : "icon-hidden")} onClick={this.props.hideBaselayer}>layers</i>
+                            <i className={"material-icons " + (this.props.baselayer ? "icon-hidden" : "")} onClick={this.props.showBaselayer}>layers_clear</i>
+                        </button>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -62,10 +68,17 @@ const mapDispatchToProps = dispatch => ({
     turnOnDarkMode: () => dispatch(turnDarkModeOn()),
     turnOffDarkMode: () => dispatch(turnDarkModeOff()),
     startUpload: (fileName, file) => dispatch(startUpload(fileName, file)),
-    openExhauster: () => dispatch(openExhauster())
+    openExhauster: () => dispatch(openExhauster()),
+    hideBaselayer: () => dispatch(hideBaselayer()),
+    showBaselayer: () => dispatch(showBaselayer())
+});
+
+
+const mapStateToProps = (state) => ({
+    baselayer: state.baselayer
 });
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(Navbar);

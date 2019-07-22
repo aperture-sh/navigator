@@ -4,8 +4,8 @@ import {
     CONFIG_CHANGE,
     DARK_MODE_OFF,
     DARK_MODE_ON, DELETE_FEATURE,
-    FINISH_UPLOAD, INIT_FEATURES, OPEN_EXHAUSTER,
-    REMOVE_UPLOAD,
+    FINISH_UPLOAD, HIDE_BASELAYER, INIT_FEATURES, OPEN_EXHAUSTER,
+    REMOVE_UPLOAD, SHOW_BASELAYER,
     SHOW_FEATURES,
     START_UPLOAD, SUBMIT_FEATURE, UPDATE_UPLOAD_PROGRESS
 } from "../actions/ActionsTypes";
@@ -17,7 +17,8 @@ const initialState = {
     exhausted_features: [],
     files: {},
     config: undefined,
-    modal: false
+    modal: false,
+    baselayer: true
 };
 
 const app = (state = initialState, action) => {
@@ -92,6 +93,14 @@ const app = (state = initialState, action) => {
         case INIT_FEATURES:
             return { ...state,
                 exhausted_features: action.payload
+            };
+        case HIDE_BASELAYER:
+            return { ...state,
+                baselayer: false
+            };
+        case SHOW_BASELAYER:
+            return { ...state,
+                baselayer: true
             };
         default:
             return state;
