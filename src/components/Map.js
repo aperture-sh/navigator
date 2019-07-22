@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 class Map extends React.Component {
     componentDidMount() {
         this.initiated = false;
+        this.loading = false;
     }
 
     componentDidUpdate(prevProps) {
@@ -127,6 +128,20 @@ class Map extends React.Component {
             } else {
 
                 this.map.setLayoutProperty("geo2", 'visibility', 'visible');
+            }
+        });
+
+        this.map.on('data', (e) => {
+            if (e.source && e.source.type === "vector") {
+                if (e.isSourceLoaded) {
+                    window.$("#map").removeClass("loading");
+                    this.loading = false;
+                    console.log(e)
+
+                } else {
+                    window.$("#map").addClass("loading");
+                    this.loading = true;
+                }
             }
         });
     }

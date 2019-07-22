@@ -3,3 +3,7 @@
     height: 100%;
     /*background-color: aqua;*/
 }
+
+.loading .mapboxgl-canvas-container {
+    cursor: progress !important;
+}
