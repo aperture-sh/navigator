@@ -12,6 +12,7 @@ import './Exhauster.css';
 class Exhauster extends React.Component {
     componentDidMount() {
        this.initiated = false;
+       this.exhausterEmpty = false;
        this.offset = 0;
     }
 
@@ -20,7 +21,9 @@ class Exhauster extends React.Component {
             this.resetView();
         }
         if (this.props.config && this.initiated && this.props.features.length <= 10) {
-            this.loadFeatures(20)
+            if (!this.exhausterEmpty) {
+                this.loadFeatures(20)
+            }
         }
 
     }
@@ -32,7 +35,12 @@ class Exhauster extends React.Component {
             .then(res => res.json()).then(res => {
             this.initiated = true;
             this.offset = this.offset + limit;
-            this.props.addFeatures(res.features)
+            if (res.features.length <= 0) {
+                this.exhausterEmpty = true;
+            } else {
+                this.props.addFeatures(res.features);
+                this.exhausterEmpty = false;
+            }
         });
     }
 
