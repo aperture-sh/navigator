@@ -81,8 +81,8 @@ class Map extends React.Component {
                         "source-layer": "io.marauder.tank",
                         "type": "fill",
                         "paint": {
-                            "fill-outline-color": "rgba(0,255,0,1)",
-                            "fill-color": "rgba(0,255,0,0.2)"
+                            "fill-outline-color": "rgb(141,141,0)",
+                            "fill-color": "rgba(141,134,0,0.2)"
                         }
                     },
                     {
@@ -96,8 +96,8 @@ class Map extends React.Component {
                                     "interpolate",
                                     ["linear"],
                                     ["get", "count"],
-                                    0, "rgba(0,255,0,0.1)",
-                                    1000, "rgba(0,255,0,0.5)"
+                                    0, "rgba(141,141,0,0.1)",
+                                    1000, "rgba(141,141,0,0.5)"
                                 ]
                         }
                     }
@@ -135,8 +135,8 @@ class Map extends React.Component {
         if (this.props.darkMode === true) {
             this.map.setLayoutProperty("osm", 'visibility', 'none');
             this.map.setLayoutProperty("cartodb", 'visibility', 'visible');
-            this.map.setPaintProperty("geo", "fill-color", "rgba(0,255,0,0.2)");
-            this.map.setPaintProperty("geo", "fill-outline-color", "rgba(0,255,0,1)");
+            this.map.setPaintProperty("geo", "fill-color", "rgba(141,134,0,0.2)");
+            this.map.setPaintProperty("geo", "fill-outline-color", "rgb(141,141,0)");
         } else {
             this.map.setLayoutProperty("cartodb", 'visibility', 'none');
             this.map.setLayoutProperty("osm", 'visibility', 'visible');
