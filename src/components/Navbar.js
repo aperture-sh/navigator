@@ -9,6 +9,10 @@ class Navbar extends React.Component {
         this.state = {darkMode: true};
     }
 
+    componentDidMount() {
+        window.$('[data-toggle="tooltip"]').tooltip();
+    }
+
     toggleDarkMode = () => {
         if (this.state.darkMode) {
             this.setState({darkMode: false});
@@ -52,7 +56,7 @@ class Navbar extends React.Component {
                         <button type="button" className="btn btn-warning" onClick={this.props.openExhauster}>Show Import Errors</button>
                     </li>
                     <li className="nav-item">
-                        <button type="button" className="btn btn-default" aria-label="Left Align">
+                        <button type="button" className="btn btn-default" aria-label="Left Align" data-toggle="tooltip" data-placement="right" title="Hide/Show Base Layer">
                             <i className={"material-icons " + (this.props.baselayer ? "" : "icon-hidden")} onClick={this.props.hideBaselayer}>layers</i>
                             <i className={"material-icons " + (this.props.baselayer ? "icon-hidden" : "")} onClick={this.props.showBaselayer}>layers_clear</i>
                         </button>
