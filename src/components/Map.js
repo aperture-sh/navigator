@@ -136,8 +136,6 @@ class Map extends React.Component {
                 if (e.isSourceLoaded) {
                     window.$("#map").removeClass("loading");
                     this.loading = false;
-                    console.log(e)
-
                 } else {
                     window.$("#map").addClass("loading");
                     this.loading = true;

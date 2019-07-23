@@ -101,6 +101,9 @@ class Exhauster extends React.Component {
                         </div>
                         <div className="modal-body">
                             <h6>The following features were not imported due database type collisions. Please correct and submit features, or dismiss them completly.</h6>
+                            <button type="button" className="btn btn-default" aria-label="Left Align" data-toggle="tooltip" data-placement="top" title="Refresh Data">
+                                <i className={"material-icons"} onClick={this.props.resetView}>refresh</i>
+                            </button>
                             <ul>
                             {   this.props.features.map((f) => {
                                     return (
