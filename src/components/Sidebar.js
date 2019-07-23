@@ -7,7 +7,6 @@ class Sidebar extends React.Component {
     render() {
         const files = this.props.files;
         const features = this.props.features;
-        console.log(features.length)
         return (
             <div className="sidebar">
                 <h5>Feature Information:</h5>
