@@ -7,9 +7,11 @@ class Sidebar extends React.Component {
     render() {
         const files = this.props.files;
         const features = this.props.features;
+        console.log(features.length)
         return (
             <div className="sidebar">
                 <h5>Feature Information:</h5>
+                <h6 style={{ display: features.length > 0 ? "none" : "block" }}>Click on geometry to get information</h6>
                 <ul className="list-group">
                     { features.map(function(f){
                         return (
@@ -27,7 +29,9 @@ class Sidebar extends React.Component {
                         );
                     })}
                 </ul>
+
                 <h5>File Uploads:</h5>
+                <h6 style={{ display: Object.keys(files).length > 0 ? "none" : "block" }}>No files uploading at the moment</h6>
                 <ul className="list-group">
                     { Object.keys(files).map(function(file){
                         const divStyle = {
