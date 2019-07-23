@@ -104,6 +104,7 @@ class Exhauster extends React.Component {
                             <button type="button" className="btn btn-default" aria-label="Left Align" data-toggle="tooltip" data-placement="top" title="Refresh Data">
                                 <i className={"material-icons"} onClick={this.props.resetView}>refresh</i>
                             </button>
+                            <h7 className={ this.props.features.length <= 0 ? "" : "show-no-features" }>No Import Error occurred</h7>
                             <ul>
                             {   this.props.features.map((f) => {
                                     return (

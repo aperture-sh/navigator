@@ -17,3 +17,7 @@
 .form-group {
     display: inline-block;
 }
+
+.show-no-features {
+    display: none;
+}
