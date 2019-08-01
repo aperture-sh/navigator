@@ -102,7 +102,7 @@ class Exhauster extends React.Component {
                         <div className="modal-body">
                             <h6>The following features were not imported due database type collisions. Please correct and submit features, or dismiss them completly.</h6>
                             <button type="button" className="btn btn-default" aria-label="Left Align" data-toggle="tooltip" data-placement="top" title="Refresh Data">
-                                <i className={"material-icons"} onClick={this.props.resetView}>refresh</i>
+                                <i className={"material-icons"} onClick={() => this.resetView()}>refresh</i>
                             </button>
                             <h5 className={ this.props.features.length <= 0 ? "" : "show-no-features" }>No Import Error occurred</h5>
                             <ul>
