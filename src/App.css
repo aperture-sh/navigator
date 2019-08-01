@@ -22,6 +22,22 @@
   height: calc(100vh - 56px);
 }
 
+.blackout-layer {
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.8;
+  z-index: 1000;
+  background-color: #000000;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.show-blackout-layer {
+  display: block;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

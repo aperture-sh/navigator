@@ -22,6 +22,7 @@ class Exhauster extends React.Component {
         }
         if (this.props.config && this.initiated && this.props.features.length <= 10) {
             if (!this.exhausterEmpty) {
+                //TODO: implement lazy loading and infinite scroll
                 // this.loadFeatures(20)
             }
         }

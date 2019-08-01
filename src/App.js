@@ -18,6 +18,7 @@ class App extends React.Component {
             <div className="App">
                 <FileUpload/>
                 <Exhauster />
+                <div className={"blackout-layer " + (this.props.modal ? "show-blackout-layer" : "")} tabIndex="-1" role="dialog">&nbsp;</div>
                 <Navbar/>
                 <div className="container-fluid main-container">
                     <div className="row no-gutters">
@@ -39,7 +40,11 @@ const mapDispatchToProps = dispatch => ({
     configChange: (config) => dispatch(configChange(config))
 });
 
+const mapStateToProps = state => ({
+    modal: state.modal
+});
+
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(App);
