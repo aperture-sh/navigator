@@ -108,8 +108,8 @@ class Exhauster extends React.Component {
                         </div>
                         <div className="modal-body">
                             <h6>The following features were not imported due database type collisions. Please correct and submit features, or dismiss them completly.</h6>
-                            <button type="button" className="btn btn-default" aria-label="Left Align" data-toggle="tooltip" data-placement="top" title="Refresh Data">
-                                <i className={"material-icons"} onClick={() => this.resetView()}>refresh</i>
+                            <button type="button" className="btn btn-default" aria-label="Left Align" data-toggle="tooltip" data-placement="top" title="Refresh Data" onClick={() => this.resetView()}>
+                                <i className={"material-icons"}>refresh</i>
                             </button>
                             <h5 className={ this.props.features.length <= 0 ? "" : "show-no-features" }>No Import Error occurred</h5>
                             <ul>
@@ -127,8 +127,8 @@ class Exhauster extends React.Component {
                                                            <input type="text" className="form-control form-control-lg" id={f._id.$oid + "-" + prop} name={f._id.$oid + "-" + prop}
                                                                   placeholder={"Enter " + prop} value={f.properties[prop]} onChange={(e) => this.handleChangeInput(e,f)} />
                                                            <div className="input-group-append">
-                                                           <button type="button" className="btn btn-default btn-outline-secondary" aria-label="Left Align" data-toggle="tooltip" data-placement="bottom" title="Remove Property">
-                                                               <i className={"material-icons"} onClick={() => this.removePropertyFromFeature(f._id.$oid, prop)}>delete</i>
+                                                           <button type="button" className="btn btn-default btn-outline-secondary" title="Remove Property"  onClick={() => this.removePropertyFromFeature(f._id.$oid, prop)}>
+                                                               <i className={"material-icons"}>delete</i>
                                                            </button>
                                                            </div>
 
