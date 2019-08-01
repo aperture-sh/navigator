@@ -16,8 +16,13 @@
 
 .form-group {
     display: inline-block;
+    margin-right: 5px;
 }
 
 .show-no-features {
     display: none;
+}
+
+.material-icons {
+    font-size: 16px;
 }

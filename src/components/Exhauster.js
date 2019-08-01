@@ -113,21 +113,30 @@ class Exhauster extends React.Component {
                             {   this.props.features.map((f) => {
                                     return (
                                         <li key={f._id.$oid} className="list-group-item">
+                                            <form className={"form"}>
                                             {
                                                 Object.keys(f.properties).map(prop => {
                                                    return (
-                                                       <div className="form-group" key={f._id.$oid + "-" + prop}>
-                                                           <label htmlFor={f._id.$oid + "-" + prop}>{prop}</label>
-                                                           <input type="text" className="form-control" id={f._id.$oid + "-" + prop} name={f._id.$oid + "-" + prop}
+
+                                                       <div className={"form-group"}><label htmlFor={f._id.$oid + "-" + prop}>{prop}</label>
+                                                       <div className="input-group input-group-sm" key={f._id.$oid + "-" + prop}>
+
+                                                           <input type="text" className="form-control form-control-lg" id={f._id.$oid + "-" + prop} name={f._id.$oid + "-" + prop}
                                                                   placeholder={"Enter " + prop} value={f.properties[prop]} onChange={(e) => this.handleChangeInput(e,f)} />
-                                                           <button type="button" className="btn btn-default" aria-label="Left Align" data-toggle="tooltip" data-placement="top" title="Remove Property">
+                                                           <div className="input-group-append">
+                                                           <button type="button" className="btn btn-default btn-outline-secondary" aria-label="Left Align" data-toggle="tooltip" data-placement="top" title="Remove Property">
                                                                <i className={"material-icons"} onClick={() => this.removePropertyFromFeature(f._id.$oid, prop)}>delete</i>
                                                            </button>
+                                                           </div>
 
+                                                       </div>
                                                        </div>
                                                    )
                                                 })
+
                                             }
+                                            </form>
+
 
                                             <p>
                                                 <button type="button" className="btn btn-danger" onClick={() => this.dismissFeature(f)}>Dismiss Feature</button>
