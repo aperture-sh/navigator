@@ -116,6 +116,7 @@ class Exhauster extends React.Component {
                             {   this.props.features.map((f) => {
                                     return (
                                         <li key={f._id.$oid} className="list-group-item">
+                                            <span>Feature ID: {f._id.$oid}</span>
                                             <form className={"form"}>
                                             {
                                                 Object.keys(f.properties).map(prop => {
