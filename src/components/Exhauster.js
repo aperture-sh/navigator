@@ -22,7 +22,7 @@ class Exhauster extends React.Component {
         }
         if (this.props.config && this.initiated && this.props.features.length <= 10) {
             if (!this.exhausterEmpty) {
-                this.loadFeatures(20)
+                // this.loadFeatures(20)
             }
         }
 
@@ -88,6 +88,10 @@ class Exhauster extends React.Component {
         this.props.changeFeature(f, target.name.split('-')[1], target.value)
     }
 
+    removePropertyFromFeature(id, prop) {
+        console.log(`Remove "${prop}" from ${id}`)
+    }
+
     render() {
         return(
             <div className={"modal " + (this.props.modal ? "exhauster-open" : "")} tabIndex="-1" role="dialog">
@@ -116,6 +120,9 @@ class Exhauster extends React.Component {
                                                            <label htmlFor={f._id.$oid + "-" + prop}>{prop}</label>
                                                            <input type="text" className="form-control" id={f._id.$oid + "-" + prop} name={f._id.$oid + "-" + prop}
                                                                   placeholder={"Enter " + prop} value={f.properties[prop]} onChange={(e) => this.handleChangeInput(e,f)} />
+                                                           <button type="button" className="btn btn-default" aria-label="Left Align" data-toggle="tooltip" data-placement="top" title="Remove Property">
+                                                               <i className={"material-icons"} onClick={() => this.removePropertyFromFeature(f._id.$oid, prop)}>delete</i>
+                                                           </button>
 
                                                        </div>
                                                    )
