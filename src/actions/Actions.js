@@ -1,12 +1,21 @@
 import {
-    ADD_FEATURES, CHANGE_FEATURE_PROP,
+    ADD_FEATURES,
+    CHANGE_FEATURE_PROP,
     CLOSE_EXHAUSTER,
     CONFIG_CHANGE,
     DARK_MODE_OFF,
-    DARK_MODE_ON, DELETE_FEATURE,
-    FINISH_UPLOAD, HIDE_BASELAYER, INIT_FEATURES, OPEN_EXHAUSTER, REMOVE_UPLOAD, SHOW_BASELAYER,
+    DARK_MODE_ON,
+    DELETE_FEATURE,
+    FINISH_UPLOAD,
+    HIDE_BASELAYER,
+    INIT_FEATURES,
+    OPEN_EXHAUSTER,
+    REMOVE_PROPERTY_FROM_FEATURE,
+    REMOVE_UPLOAD,
+    SHOW_BASELAYER,
     SHOW_FEATURES,
-    START_UPLOAD, SUBMIT_FEATURE,
+    START_UPLOAD,
+    SUBMIT_FEATURE,
     UPDATE_UPLOAD_PROGRESS
 } from "./ActionsTypes";
 
@@ -84,6 +93,14 @@ export const changeExhaustedFeatureProperty = (id, key, value) => ({
        key: key,
        value: value
    }
+});
+
+export const removePropertyFromFeature = (id, key) => ({
+    type: REMOVE_PROPERTY_FROM_FEATURE,
+    payload: {
+        id: id,
+        key: key
+    }
 });
 
 export const initExhaustedFeatures = (features) => ({

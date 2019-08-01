@@ -4,7 +4,7 @@ import {
     CONFIG_CHANGE,
     DARK_MODE_OFF,
     DARK_MODE_ON, DELETE_FEATURE,
-    FINISH_UPLOAD, HIDE_BASELAYER, INIT_FEATURES, OPEN_EXHAUSTER,
+    FINISH_UPLOAD, HIDE_BASELAYER, INIT_FEATURES, OPEN_EXHAUSTER, REMOVE_PROPERTY_FROM_FEATURE,
     REMOVE_UPLOAD, SHOW_BASELAYER,
     SHOW_FEATURES,
     START_UPLOAD, SUBMIT_FEATURE, UPDATE_UPLOAD_PROGRESS
@@ -87,6 +87,13 @@ const app = (state = initialState, action) => {
             Object.assign(tmpFeatures, state.exhausted_features);
             let tmp2 = tmpFeatures.find((f) => f._id.$oid === action.payload.id);
             tmp2.properties[action.payload.key] = action.payload.value;
+            return { ...state,
+                exhausted_features: tmpFeatures
+            };
+        case REMOVE_PROPERTY_FROM_FEATURE:
+            Object.assign(tmpFeatures, state.exhausted_features);
+            let tmp3 = tmpFeatures.find((f) => f._id.$oid === action.payload.id);
+            delete tmp3.properties[action.payload.key];
             return { ...state,
                 exhausted_features: tmpFeatures
             };

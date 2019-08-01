@@ -5,7 +5,7 @@ import {
     addExhaustedFeatures,
     submitExhaustedFeature,
     deleteExhaustedFeature,
-    changeExhaustedFeatureProperty, initExhaustedFeatures
+    changeExhaustedFeatureProperty, initExhaustedFeatures, removePropertyFromFeature
 } from "../actions/Actions";
 import './Exhauster.css';
 
@@ -25,6 +25,7 @@ class Exhauster extends React.Component {
                 // this.loadFeatures(20)
             }
         }
+        window.$('[data-toggle="tooltip"]').tooltip();
 
     }
 
@@ -89,6 +90,7 @@ class Exhauster extends React.Component {
     }
 
     removePropertyFromFeature(id, prop) {
+        this.props.removeProperty(id, prop);
         console.log(`Remove "${prop}" from ${id}`)
     }
 
@@ -118,13 +120,13 @@ class Exhauster extends React.Component {
                                                 Object.keys(f.properties).map(prop => {
                                                    return (
 
-                                                       <div className={"form-group"}><label htmlFor={f._id.$oid + "-" + prop}>{prop}</label>
-                                                       <div className="input-group input-group-sm" key={f._id.$oid + "-" + prop}>
+                                                       <div className={"form-group"}  key={f._id.$oid + "-" + prop}><label htmlFor={f._id.$oid + "-" + prop}>{prop}</label>
+                                                       <div className="input-group input-group-sm">
 
                                                            <input type="text" className="form-control form-control-lg" id={f._id.$oid + "-" + prop} name={f._id.$oid + "-" + prop}
                                                                   placeholder={"Enter " + prop} value={f.properties[prop]} onChange={(e) => this.handleChangeInput(e,f)} />
                                                            <div className="input-group-append">
-                                                           <button type="button" className="btn btn-default btn-outline-secondary" aria-label="Left Align" data-toggle="tooltip" data-placement="top" title="Remove Property">
+                                                           <button type="button" className="btn btn-default btn-outline-secondary" aria-label="Left Align" data-toggle="tooltip" data-placement="bottom" title="Remove Property">
                                                                <i className={"material-icons"} onClick={() => this.removePropertyFromFeature(f._id.$oid, prop)}>delete</i>
                                                            </button>
                                                            </div>
@@ -165,7 +167,8 @@ const mapDispatchToProps = dispatch => ({
     initFeatures: (features) => dispatch(initExhaustedFeatures(features)),
     deleteFeature: (feature) => dispatch(deleteExhaustedFeature(feature._id.$oid)),
     submitFeature: (feature) => dispatch(submitExhaustedFeature(feature._id.$oid)),
-    changeFeature: (feature, key, value) => dispatch(changeExhaustedFeatureProperty(feature._id.$oid, key, value))
+    changeFeature: (feature, key, value) => dispatch(changeExhaustedFeatureProperty(feature._id.$oid, key, value)),
+    removeProperty: (id, key) => dispatch(removePropertyFromFeature(id, key))
 });
 
 
