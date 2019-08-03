@@ -1,7 +1,10 @@
 import React from 'react';
 import './Navbar.css';
+import '@material/react-button/dist/button.css'
 import {connect} from "react-redux";
 import {startUpload, turnDarkModeOff, turnDarkModeOn, openExhauster, hideBaselayer, showBaselayer} from "../actions/Actions";
+import Button from "@material/react-button";
+import MaterialIcon from "@material/react-material-icon";
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -53,12 +56,14 @@ class Navbar extends React.Component {
                         </div>
                     </li>
                     <li className="nav-item">
-                        <button type="button" className="btn btn-warning" onClick={this.props.openExhauster}>Show Import Errors</button>
+                        <Button outlined="true" onClick={this.props.openExhauster}>Show Import Errors</Button>
                     </li>
                     <li className="nav-item">
+                        <Button
+                            outlined="true"
+                            icon={<MaterialIcon icon={(this.props.baselayer ? "layers" : "layers_clear")} />}
+                            onClick={(this.props.baselayer ? this.props.hideBaselayer : this.props.showBaselayer)}>Hide/Show Baselayer</Button>
                         <button type="button" className="btn btn-default" aria-label="Left Align" data-toggle="tooltip" data-placement="right" title="Hide/Show Base Layer">
-                            <i className={"material-icons " + (this.props.baselayer ? "" : "icon-hidden")} onClick={this.props.hideBaselayer}>layers</i>
-                            <i className={"material-icons " + (this.props.baselayer ? "icon-hidden" : "")} onClick={this.props.showBaselayer}>layers_clear</i>
                         </button>
                     </li>
                 </ul>
