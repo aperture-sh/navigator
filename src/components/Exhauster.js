@@ -47,10 +47,16 @@ class Exhauster extends React.Component {
     }
 
     resetView() {
+        if (this.initiated) {
+            this.props.initFeatures([]);
+        }
+
         fetch(`${this.props.config.exhauster.url}/?limit=20&offset=0`, {
             method: 'GET'
-        })
-            .then(res => res.json()).then(res => {
+        }).then(res => {
+
+            return res.json();
+        }).then(res => {
             this.initiated = true;
             this.props.initFeatures(res.features);
             this.offset = 20;

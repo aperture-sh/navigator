@@ -1,5 +1,5 @@
 {
-  "tank": "http://10.52.43.58/tank",
+  "tank": "http://localhost:3000/tank",
   "exhauster": {
     "url": "http://localhost:3000/exhauster",
     "enabled": true
