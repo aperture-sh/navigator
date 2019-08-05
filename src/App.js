@@ -9,6 +9,11 @@ import {configChange} from "./actions/Actions";
 import Exhauster from "./components/Exhauster";
 import NavigatorDialog from "./components/NavigatorDialog";
 
+import '@material/react-button/dist/button.css'
+import '@material/react-list/dist/list.css';
+import "@material/react-dialog/dist/dialog.css";
+import '@material/react-card/dist/card.css';
+
 class App extends React.Component {
     componentDidMount() {
         this.props.configChange(this.props.config);

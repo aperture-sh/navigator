@@ -8,6 +8,11 @@ import {
     changeExhaustedFeatureProperty, initExhaustedFeatures, removePropertyFromFeature
 } from "../actions/Actions";
 import './Exhauster.css';
+import MaterialIcon from "@material/react-material-icon";
+import Button from "@material/react-button";
+import ExhausterFeature from "./ExhausterFeature";
+
+
 
 class Exhauster extends React.Component {
     componentDidMount() {
@@ -64,90 +69,16 @@ class Exhauster extends React.Component {
 
     }
 
-    saveChanges(f) {
-        this.deleteFromExhauster(f);
-        let gFeatures = {};
-        Object.assign(gFeatures, f);
-        delete gFeatures._id;
-        fetch(`${this.props.config.tank}/`, {
-            method: 'POST',
-            body: JSON.stringify(gFeatures)
-        }).then(res => {
-            this.props.submitFeature(f);
-            this.offset = this.offset - 1;
-        });
-    }
-
-    dismissFeature(f) {
-        this.deleteFromExhauster(f);
-    }
-
-    deleteFromExhauster(f) {
-        fetch(`${this.props.config.exhauster.url}/${f._id.$oid}`, {
-            method: 'DELETE'
-        }).then(res => {
-            this.props.deleteFeature(f);
-            this.offset = this.offset - 1;
-        });
-    }
-
-    handleChangeInput(e, f) {
-        let target = e.target;
-        this.props.changeFeature(f, target.name.split('-')[1], target.value)
-    }
-
-    removePropertyFromFeature(id, prop) {
-        this.props.removeProperty(id, prop);
-        console.log(`Remove "${prop}" from ${id}`)
-    }
-
     render() {
         return(
             <div>
-                            <h6>The following features were not imported due database type collisions. Please correct and submit features, or dismiss them completly.</h6>
-                            <button type="button" className="btn btn-default" aria-label="Left Align" data-toggle="tooltip" data-placement="top" title="Refresh Data" onClick={() => this.resetView()}>
-                                <i className={"material-icons"}>refresh</i>
-                            </button>
-                            <h5 className={ this.props.features.length <= 0 ? "" : "show-no-features" }>No Import Error occurred</h5>
-                            <ul>
-                            {   this.props.features.map((f) => {
-                                    return (
-                                        <li key={f._id.$oid} className="list-group-item">
-                                            <span>Feature ID: {f._id.$oid}</span>
-                                            <form className={"form"}>
-                                            {
-                                                Object.keys(f.properties).map(prop => {
-                                                   return (
-
-                                                       <div className={"form-group"}  key={f._id.$oid + "-" + prop}><label htmlFor={f._id.$oid + "-" + prop}>{prop}</label>
-                                                       <div className="input-group input-group-sm">
-
-                                                           <input type="text" className="form-control form-control-lg" id={f._id.$oid + "-" + prop} name={f._id.$oid + "-" + prop}
-                                                                  placeholder={"Enter " + prop} value={f.properties[prop]} onChange={(e) => this.handleChangeInput(e,f)} />
-                                                           <div className="input-group-append">
-                                                           <button type="button" className="btn btn-default btn-outline-secondary" title="Remove Property"  onClick={() => this.removePropertyFromFeature(f._id.$oid, prop)}>
-                                                               <i className={"material-icons"}>delete</i>
-                                                           </button>
-                                                           </div>
-
-                                                       </div>
-                                                       </div>
-                                                   )
-                                                })
-
-                                            }
-                                            </form>
-
-
-                                            <p>
-                                                <button type="button" className="btn btn-danger" onClick={() => this.dismissFeature(f)}>Dismiss Feature</button>
-                                                <button type="button" className="btn btn-primary" onClick={() => this.saveChanges(f)}>Save changes</button>
-                                            </p>
-                                        </li>
-                                    )
-                                })
-                            }
-                            </ul>
+                <h6>The following features were not imported due database type collisions. Please correct and submit features, or dismiss them completly.</h6>
+                <Button
+                    outlined="true"
+                    icon={<MaterialIcon icon="refresh" />}
+                    onClick={() => this.resetView()}>Refresh</Button>
+                <h5 className={ this.props.features.length <= 0 ? "" : "show-no-features" }>No Import Error occurred</h5>
+                {this.props.features.map((f) => <ExhausterFeature feature={f} />)}
             </div>
 
 

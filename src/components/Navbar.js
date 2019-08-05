@@ -1,6 +1,5 @@
 import React from 'react';
 import './Navbar.css';
-import '@material/react-button/dist/button.css'
 import {connect} from "react-redux";
 import {startUpload, turnDarkModeOff, turnDarkModeOn, openExhauster, hideBaselayer, showBaselayer} from "../actions/Actions";
 import Button from "@material/react-button";

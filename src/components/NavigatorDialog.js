@@ -1,7 +1,6 @@
 import React from 'react';
 import Dialog, {DialogButton, DialogContent, DialogFooter, DialogTitle} from "@material/react-dialog";
 import {connect} from "react-redux";
-import "@material/react-dialog/dist/dialog.css";
 import "./NavigatorDialog.css";
 import {closeExhauster} from "../actions/Actions";
 
