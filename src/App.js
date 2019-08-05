@@ -7,6 +7,7 @@ import FileUpload from "./logic/FileUpload";
 import {connect} from "react-redux";
 import {configChange} from "./actions/Actions";
 import Exhauster from "./components/Exhauster";
+import NavigatorDialog from "./components/NavigatorDialog";
 
 class App extends React.Component {
     componentDidMount() {
@@ -17,8 +18,7 @@ class App extends React.Component {
         return (
             <div className="App">
                 <FileUpload/>
-                <Exhauster />
-                <div className={"blackout-layer " + (this.props.modal ? "show-blackout-layer" : "")} tabIndex="-1" role="dialog">&nbsp;</div>
+                <NavigatorDialog content={<Exhauster />} title={"Exhauster Control Panel"} isOpen={this.props.modal}/>
                 <Navbar/>
                 <div className="container-fluid main-container">
                     <div className="row no-gutters">

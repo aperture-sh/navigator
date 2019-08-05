@@ -103,16 +103,7 @@ class Exhauster extends React.Component {
 
     render() {
         return(
-            <div className={"modal " + (this.props.modal ? "exhauster-open" : "")} tabIndex="-1" role="dialog">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title">Exhauster Control Panel</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.props.closeExhauster}>
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div className="modal-body">
+            <div>
                             <h6>The following features were not imported due database type collisions. Please correct and submit features, or dismiss them completly.</h6>
                             <button type="button" className="btn btn-default" aria-label="Left Align" data-toggle="tooltip" data-placement="top" title="Refresh Data" onClick={() => this.resetView()}>
                                 <i className={"material-icons"}>refresh</i>
@@ -157,13 +148,8 @@ class Exhauster extends React.Component {
                                 })
                             }
                             </ul>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={this.props.closeExhauster}>Close</button>
-                        </div>
-                    </div>
-                </div>
             </div>
+
 
         )
     }
