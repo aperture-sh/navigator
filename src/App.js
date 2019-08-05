@@ -14,6 +14,9 @@ import '@material/react-list/dist/list.css';
 import "@material/react-dialog/dist/dialog.css";
 import '@material/react-card/dist/card.css';
 import '@material/react-text-field/dist/text-field.css';
+import '@material/react-top-app-bar/dist/top-app-bar.css';
+import '@material/react-material-icon/dist/material-icon.css';
+import '@material/react-layout-grid/dist/layout-grid.css';
 
 class App extends React.Component {
     componentDidMount() {
