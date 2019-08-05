@@ -134,10 +134,10 @@ class Map extends React.Component {
         this.map.on('data', (e) => {
             if (e.source && e.source.type === "vector") {
                 if (e.isSourceLoaded) {
-                    window.$("#map").removeClass("loading");
+                    // window.$("#map").removeClass("loading");
                     this.loading = false;
                 } else {
-                    window.$("#map").addClass("loading");
+                    // window.$("#map").addClass("loading");
                     this.loading = true;
                 }
             }

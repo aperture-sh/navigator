@@ -1,28 +1,16 @@
-.exhauster-open {
-    display: block;
-}
-
-.modal {
-}
-
-.modal-body {
-    overflow: scroll;
-    height: 80vh;
-}
-
 .modal-dialog {
     max-width: 80vw;
 }
 
-.form-group {
+.mdc-card h5 {
+    margin: 8px;
+}
+
+.mdc-card form {
     display: inline-block;
-    margin-right: 5px;
+    margin: 8px;
 }
 
 .show-no-features {
     display: none;
-}
-
-.material-icons {
-    font-size: 16px;
 }

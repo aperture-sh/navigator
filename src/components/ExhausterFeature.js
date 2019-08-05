@@ -2,18 +2,18 @@ import React from 'react';
 import './ExhausterFeature.css'
 import Card, {
     CardActions,
-    CardActionButtons,
-    CardActionIcons
+    CardActionButtons
 } from "@material/react-card";
 import {Button} from "@material/react-button";
 import {
-    addExhaustedFeatures, changeExhaustedFeatureProperty,
-    closeExhauster,
+    changeExhaustedFeatureProperty,
     deleteExhaustedFeature,
-    initExhaustedFeatures, removePropertyFromFeature,
+    removePropertyFromFeature,
     submitExhaustedFeature
 } from "../actions/Actions";
+import TextField, {Input} from '@material/react-text-field';
 import {connect} from "react-redux";
+import MaterialIcon from "@material/react-material-icon";
 
 class ExhausterFeature extends React.Component {
 
@@ -57,49 +57,37 @@ class ExhausterFeature extends React.Component {
     render() {
         const f = this.props.feature;
         return (
-            <Card key={f._id.$oid}>
+            <Card>
                         <h5>Feature ID: {f._id.$oid}</h5>
-                        <form className={"form"}>
+                <form>
                             {
                                 Object.keys(f.properties).map(prop => {
                                     return (
 
-                                        <div className={"form-group"} key={f._id.$oid + "-" + prop}><label
-                                            htmlFor={f._id.$oid + "-" + prop}>{prop}</label>
-                                            <div className="input-group input-group-sm">
-
-                                                <input type="text" className="form-control form-control-lg"
-                                                       id={f._id.$oid + "-" + prop}
-                                                       name={f._id.$oid + "-" + prop}
-                                                       placeholder={"Enter " + prop} value={f.properties[prop]}
-                                                       onChange={(e) => this.handleChangeInput(e, f)}/>
-                                                <div className="input-group-append">
-                                                    <button type="button"
-                                                            className="btn btn-default btn-outline-secondary"
-                                                            title="Remove Property"
-                                                            onClick={() => this.removePropertyFromFeature(f._id.$oid, prop)}>
-                                                        <i className={"material-icons"}>delete</i>
-                                                    </button>
-                                                </div>
-
-                                            </div>
-                                        </div>
+                                        <TextField
+                                            key={f._id.$oid + "-" + prop}
+                                            label={prop}
+                                            outlined="true"
+                                            // dense="true"
+                                            trailingIcon={<MaterialIcon role="button" icon="delete" />}
+                                            onTrailingIconSelect={() => this.removePropertyFromFeature(f._id.$oid, prop)}
+                                        ><Input
+                                            id={f._id.$oid + "-" + prop}
+                                            name={f._id.$oid + "-" + prop}
+                                            value={f.properties[prop]}
+                                            onChange={(e) => this.handleChangeInput(e, f)} />
+                                        </TextField>
                                     )
                                 })
 
                             }
-                        </form>
-
+                </form>
 
                 <CardActions>
                     <CardActionButtons>
                         <Button outlined={"true"} onClick={() => this.dismissFeature(f)}>Dismiss Feature</Button>
                         <Button outlined={"true"} onClick={() => this.saveChanges(f)}>Save changes</Button>
                     </CardActionButtons>
-
-                    <CardActionIcons>
-
-                    </CardActionIcons>
                 </CardActions>
             </Card>
         )
@@ -107,9 +95,6 @@ class ExhausterFeature extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    closeExhauster: () => dispatch(closeExhauster()),
-    addFeatures: (features) => dispatch(addExhaustedFeatures(features)),
-    initFeatures: (features) => dispatch(initExhaustedFeatures(features)),
     deleteFeature: (feature) => dispatch(deleteExhaustedFeature(feature._id.$oid)),
     submitFeature: (feature) => dispatch(submitExhaustedFeature(feature._id.$oid)),
     changeFeature: (feature, key, value) => dispatch(changeExhaustedFeatureProperty(feature._id.$oid, key, value)),
@@ -118,9 +103,8 @@ const mapDispatchToProps = dispatch => ({
 
 
 const mapStateToProps = state => ({
-    modal: state.modal,
-    features: state.exhausted_features,
-    config: state.config
+    config: state.config,
+    features: state.features
 });
 
 export default connect(

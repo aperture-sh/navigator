@@ -1,18 +1,13 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    closeExhauster,
     addExhaustedFeatures,
-    submitExhaustedFeature,
-    deleteExhaustedFeature,
-    changeExhaustedFeatureProperty, initExhaustedFeatures, removePropertyFromFeature
+    initExhaustedFeatures
 } from "../actions/Actions";
 import './Exhauster.css';
 import MaterialIcon from "@material/react-material-icon";
 import Button from "@material/react-button";
 import ExhausterFeature from "./ExhausterFeature";
-
-
 
 class Exhauster extends React.Component {
     componentDidMount() {
@@ -31,7 +26,6 @@ class Exhauster extends React.Component {
                 // this.loadFeatures(20)
             }
         }
-        window.$('[data-toggle="tooltip"]').tooltip();
 
     }
 
@@ -78,7 +72,7 @@ class Exhauster extends React.Component {
                     icon={<MaterialIcon icon="refresh" />}
                     onClick={() => this.resetView()}>Refresh</Button>
                 <h5 className={ this.props.features.length <= 0 ? "" : "show-no-features" }>No Import Error occurred</h5>
-                {this.props.features.map((f) => <ExhausterFeature feature={f} />)}
+                {this.props.features.map((f) => <ExhausterFeature feature={f}  key={f._id.$oid} />)}
             </div>
 
 
@@ -87,13 +81,8 @@ class Exhauster extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    closeExhauster: () => dispatch(closeExhauster()),
     addFeatures: (features) => dispatch(addExhaustedFeatures(features)),
     initFeatures: (features) => dispatch(initExhaustedFeatures(features)),
-    deleteFeature: (feature) => dispatch(deleteExhaustedFeature(feature._id.$oid)),
-    submitFeature: (feature) => dispatch(submitExhaustedFeature(feature._id.$oid)),
-    changeFeature: (feature, key, value) => dispatch(changeExhaustedFeatureProperty(feature._id.$oid, key, value)),
-    removeProperty: (id, key) => dispatch(removePropertyFromFeature(id, key))
 });
 
 

@@ -11,10 +11,6 @@ class Navbar extends React.Component {
         this.state = {darkMode: true};
     }
 
-    componentDidMount() {
-        window.$('[data-toggle="tooltip"]').tooltip();
-    }
-
     toggleDarkMode = () => {
         if (this.state.darkMode) {
             this.setState({darkMode: false});
