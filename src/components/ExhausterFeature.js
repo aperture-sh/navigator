@@ -62,7 +62,7 @@ class ExhausterFeature extends React.Component {
         const f = this.state.f;
         return (
             <Card>
-                        <h5>Feature ID: {f._id.$oid}</h5>
+                <h5>Feature ID: {f._id.$oid}</h5>
                 <form>
                             {
                                 Object.keys(f.properties).map(prop => {

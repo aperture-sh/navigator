@@ -17,6 +17,8 @@ import '@material/react-text-field/dist/text-field.css';
 import '@material/react-top-app-bar/dist/top-app-bar.css';
 import '@material/react-material-icon/dist/material-icon.css';
 import '@material/react-layout-grid/dist/layout-grid.css';
+import "@material/react-switch/dist/switch.css";
+import {Cell, Grid, Row} from '@material/react-layout-grid';
 
 class App extends React.Component {
     componentDidMount() {
@@ -28,18 +30,16 @@ class App extends React.Component {
             <div className="App">
                 <FileUpload/>
                 <NavigatorDialog content={<Exhauster />} title={"Exhauster Control Panel"} isOpen={this.props.modal}/>
-                <Navbar/>
-                <div className="container-fluid main-container">
-                    <div className="row no-gutters">
-                        <div className="col">
-                            <Sidebar/>
-                        </div>
-                        <div className="col-10">
-                            <Map/>
-                        </div>
-                    </div>
-                </div>
+                <Grid className={"main-container"}>
+                    <Row className={"navbar-container"}>
+                        <Cell columns={12}><Navbar /></Cell>
+                    </Row>
+                    <Row className={"content-container"}>
+                        <Cell desktopColumns={3} order={2} phoneColumns={4} tabletColumns={4}><Sidebar/></Cell>
+                        <Cell desktopColumns={9} order={3} phoneColumns={4} tabletColumns={4}><Map/></Cell>
+                    </Row>
 
+                </Grid>
             </div>
         );
     }
