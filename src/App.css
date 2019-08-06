@@ -13,29 +13,23 @@
 }
 
 .main-container {
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0 !important;
 }
 
-.main-container .row {
+.mdc-layout-grid-gutter-desktop {
+  padding: 0;
+  margin: 0;
 
-  height: calc(100vh - 56px);
 }
 
-.blackout-layer {
-  width: 100vw;
-  height: 100vh;
-  opacity: 0.8;
-  z-index: 1000;
-  background-color: #000000;
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
+.navbar-container {
+  height: 5vh;
+  grid-gap: 0 !important;
 }
 
-.show-blackout-layer {
-  display: block;
+.content-container {
+  height: 95vh;
+  grid-gap: 0 !important;
 }
 
 @keyframes App-logo-spin {
