@@ -17,6 +17,8 @@ import MaterialIcon from "@material/react-material-icon";
 
 class ExhausterFeature extends React.Component {
 
+    state = { f: this.props.feature };
+
     saveChanges(f) {
         this.deleteFromExhauster(f);
         let gFeatures = {};
@@ -46,16 +48,18 @@ class ExhausterFeature extends React.Component {
 
     handleChangeInput(e, f) {
         let target = e.target;
+        this.setState({f: f});
         this.props.changeFeature(f, target.name.split('-')[1], target.value)
     }
 
-    removePropertyFromFeature(id, prop) {
-        this.props.removeProperty(id, prop);
-        console.log(`Remove "${prop}" from ${id}`)
+    removePropertyFromFeature(f, prop) {
+        this.props.removeProperty(f._id.$oid, prop);
+        this.setState({f: f});
+        console.log(`Remove "${prop}" from ${f._id.$oid}`)
     }
 
     render() {
-        const f = this.props.feature;
+        const f = this.state.f;
         return (
             <Card>
                         <h5>Feature ID: {f._id.$oid}</h5>
@@ -70,7 +74,7 @@ class ExhausterFeature extends React.Component {
                                             outlined="true"
                                             // dense="true"
                                             trailingIcon={<MaterialIcon role="button" icon="delete" />}
-                                            onTrailingIconSelect={() => this.removePropertyFromFeature(f._id.$oid, prop)}
+                                            onTrailingIconSelect={() => this.removePropertyFromFeature(f, prop)}
                                         ><Input
                                             id={f._id.$oid + "-" + prop}
                                             name={f._id.$oid + "-" + prop}
@@ -103,8 +107,7 @@ const mapDispatchToProps = dispatch => ({
 
 
 const mapStateToProps = state => ({
-    config: state.config,
-    features: state.features
+    config: state.config
 });
 
 export default connect(
