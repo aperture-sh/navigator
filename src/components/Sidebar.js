@@ -17,7 +17,7 @@ class Sidebar extends React.Component {
                     { features.map(function(f){
                         return (
                             <React.Fragment key={uuidv4()}>
-                            <List>
+                            <List twoLine>
                                 {
                                     Object.keys(f.properties).map(prop => {
                                         return (
@@ -39,7 +39,7 @@ class Sidebar extends React.Component {
                 </ListGroup>
                 <Headline5>File Uploads:</Headline5>
                 <Headline6 style={{ display: Object.keys(files).length > 0 ? "none" : "block" }}>No files uploading at the moment</Headline6>
-                <List>
+                <List twoLine>
                     { Object.keys(files).map(function(file){
                         return (
                             <ListItem key={uuidv4()}>
