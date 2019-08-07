@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import Map from "./components/Map";
-import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import FileUpload from "./logic/FileUpload";
 import {connect} from "react-redux";
@@ -19,6 +18,8 @@ import '@material/react-material-icon/dist/material-icon.css';
 import '@material/react-layout-grid/dist/layout-grid.css';
 import "@material/react-switch/dist/switch.css";
 import {Cell, Grid, Row} from '@material/react-layout-grid';
+import AppBar from "./components/AppBar";
+import {TopAppBarFixedAdjust} from '@material/react-top-app-bar';
 
 class App extends React.Component {
     componentDidMount() {
@@ -30,16 +31,17 @@ class App extends React.Component {
             <div className="App">
                 <FileUpload/>
                 <NavigatorDialog content={<Exhauster />} title={"Exhauster Control Panel"} isOpen={this.props.modal}/>
-                <Grid className={"main-container"}>
-                    <Row className={"navbar-container"}>
-                        <Cell columns={12}><Navbar /></Cell>
-                    </Row>
-                    <Row className={"content-container"}>
-                        <Cell desktopColumns={3} order={2} phoneColumns={4} tabletColumns={4}><Sidebar/></Cell>
-                        <Cell desktopColumns={9} order={3} phoneColumns={4} tabletColumns={4}><Map/></Cell>
-                    </Row>
+                <AppBar />
+                <TopAppBarFixedAdjust>
+                    <Grid className={"main-container"}>
+                        <Row className={"content-container"}>
+                            <Cell desktopColumns={3} order={2} phoneColumns={4} tabletColumns={4}><Sidebar/></Cell>
+                            <Cell desktopColumns={9} order={3} phoneColumns={4} tabletColumns={4}><Map/></Cell>
+                        </Row>
 
-                </Grid>
+                    </Grid>
+                </TopAppBarFixedAdjust>
+
             </div>
         );
     }

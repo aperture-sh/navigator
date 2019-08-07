@@ -14,7 +14,7 @@ import {
     REMOVE_UPLOAD,
     SHOW_BASELAYER,
     SHOW_FEATURES,
-    START_UPLOAD,
+    START_UPLOAD, START_UPLOADS,
     SUBMIT_FEATURE,
     UPDATE_UPLOAD_PROGRESS
 } from "./ActionsTypes";
@@ -37,6 +37,13 @@ export const startUpload = (fileName, file) => ({
     payload: {
         fileName: fileName,
         file: file
+    }
+});
+
+export const startUploads = (files) => ({
+    type: START_UPLOADS,
+    payload: {
+        files: files
     }
 });
 

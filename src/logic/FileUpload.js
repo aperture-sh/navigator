@@ -38,7 +38,8 @@ class FileUpload extends React.PureComponent {
                     },
                     body: file.file,
                 })
-                .then(res => {
+                .then(res => res.json())
+                .then( data => {
                     this.props.finishUpload(file.id)
                 });
             }

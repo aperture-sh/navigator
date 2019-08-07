@@ -7,7 +7,7 @@ import {
     FINISH_UPLOAD, HIDE_BASELAYER, INIT_FEATURES, OPEN_EXHAUSTER, REMOVE_PROPERTY_FROM_FEATURE,
     REMOVE_UPLOAD, SHOW_BASELAYER,
     SHOW_FEATURES,
-    START_UPLOAD, SUBMIT_FEATURE, UPDATE_UPLOAD_PROGRESS
+    START_UPLOAD, START_UPLOADS, SUBMIT_FEATURE, UPDATE_UPLOAD_PROGRESS
 } from "../actions/ActionsTypes";
 import uuidv4 from 'uuid/v4';
 
@@ -39,8 +39,17 @@ const app = (state = initialState, action) => {
             return { ...state,
                 files: files
             };
+        case START_UPLOADS:
+            Object.assign(files, state.files);
+            for (let i=0; i<action.payload.files.length;i++) {
+                let f = action.payload.files[i];
+                let uuidTmp = uuidv4();
+                files[uuidTmp] =  { id: uuidTmp, fileName: f.name, progress: 0, file: f};
+            }
+            return { ...state,
+                files: files
+            };
         case FINISH_UPLOAD:
-
             Object.assign(files, state.files);
             files[action.payload].progress = 100;
             return { ...state,
