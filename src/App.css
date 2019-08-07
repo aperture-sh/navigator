@@ -22,7 +22,20 @@
 
 }
 
-.content-container {
-  height: calc(100vh - 64px);
-  grid-gap: 0 !important;
+
+.drawer-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.drawer-app-content {
+  flex: auto;
+  overflow: auto;
+}
+
+.top-app-bar-fix-adjust {
+  display: flex;
+  width: 100%;
 }

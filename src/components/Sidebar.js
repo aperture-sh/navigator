@@ -3,7 +3,7 @@ import './Sidebar.css';
 import {connect} from "react-redux";
 import uuidv4 from 'uuid/v4';
 import List, {ListItem, ListItemText, ListGroup, ListDivider} from "@material/react-list";
-import {Headline5, Headline6} from "@material/react-typography";
+import {Subtitle1, Subtitle2} from "@material/react-typography";
 
 class Sidebar extends React.Component {
     render() {
@@ -11,13 +11,13 @@ class Sidebar extends React.Component {
         const features = this.props.features;
         return (
             <div className="sidebar">
-                <Headline5>Feature Information:</Headline5>
-                <Headline6 style={{ display: features.length > 0 ? "none" : "block" }}>Click on geometry to get information</Headline6>
+                <Subtitle1>Feature Information:</Subtitle1>
+                <Subtitle2 style={{ display: features.length > 0 ? "none" : "block" }}>Click on geometry to get information</Subtitle2>
                 <ListGroup>
                     { features.map(function(f){
                         return (
                             <React.Fragment key={uuidv4()}>
-                            <List twoLine>
+                            <List twoLine nonInteractive dense>
                                 {
                                     Object.keys(f.properties).map(prop => {
                                         return (
@@ -37,9 +37,9 @@ class Sidebar extends React.Component {
                     })}
 
                 </ListGroup>
-                <Headline5>File Uploads:</Headline5>
-                <Headline6 style={{ display: Object.keys(files).length > 0 ? "none" : "block" }}>No files uploading at the moment</Headline6>
-                <List twoLine>
+                <Subtitle1>File Uploads:</Subtitle1>
+                <Subtitle2 style={{ display: Object.keys(files).length > 0 ? "none" : "block" }}>No files uploading at the moment</Subtitle2>
+                <List twoLine nonInteractive dense>
                     { Object.keys(files).map(function(file){
                         return (
                             <ListItem key={uuidv4()}>

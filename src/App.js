@@ -18,11 +18,14 @@ import '@material/react-material-icon/dist/material-icon.css';
 import '@material/react-layout-grid/dist/layout-grid.css';
 import "@material/react-switch/dist/switch.css";
 import '@material/react-typography/dist/typography.css';
-import {Cell, Grid, Row} from '@material/react-layout-grid';
+import "@material/react-drawer/dist/drawer.css";
 import AppBar from "./components/AppBar";
 import {TopAppBarFixedAdjust} from '@material/react-top-app-bar';
+import Drawer, {DrawerAppContent, DrawerContent} from "@material/react-drawer";
 
 class App extends React.Component {
+    state = {open: true};
+
     componentDidMount() {
         this.props.configChange(this.props.config);
     }
@@ -32,17 +35,29 @@ class App extends React.Component {
             <div className="App">
                 <FileUpload/>
                 <NavigatorDialog content={<Exhauster />} title={"Exhauster Control Panel"} isOpen={this.props.modal}/>
+                <div className="drawer-container">
                 <AppBar />
-                <TopAppBarFixedAdjust>
-                    <Grid className={"main-container"}>
-                        <Row className={"content-container"}>
-                            <Cell desktopColumns={3} order={2} phoneColumns={0} tabletColumns={3}><Sidebar/></Cell>
-                            <Cell desktopColumns={9} order={3} phoneColumns={12} tabletColumns={12}><Map/></Cell>
-                        </Row>
+                <TopAppBarFixedAdjust className='top-app-bar-fix-adjust'>
+                    <Drawer
+                        dismissible
+                        open={this.props.drawer}
+                    >
+                        <DrawerContent>
+                        <Sidebar />
+                        </DrawerContent>
+                    </Drawer>
+                    <DrawerAppContent className='drawer-app-content'>
+                       <Map />
+                    </DrawerAppContent>
+                    {/*<Grid className={"main-container"}>*/}
+                    {/*    <Row className={"content-container"}>*/}
+                    {/*        <Cell desktopColumns={3} order={2} phoneColumns={0} tabletColumns={3}><Sidebar/></Cell>*/}
+                    {/*        <Cell desktopColumns={9} order={3} phoneColumns={12} tabletColumns={12}><Map/></Cell>*/}
+                    {/*    </Row>*/}
 
-                    </Grid>
+                    {/*</Grid>*/}
                 </TopAppBarFixedAdjust>
-
+                </div>
             </div>
         );
     }
@@ -53,7 +68,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-    modal: state.modal
+    modal: state.modal,
+    drawer: state.drawer
 });
 
 export default connect(

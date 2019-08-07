@@ -1,7 +1,7 @@
 import React from 'react';
 import './Map.css';
 import * as mapboxgl from "mapbox-gl";
-import {showFeatures} from "../actions/Actions";
+import {openDrawer, showFeatures} from "../actions/Actions";
 import {connect} from "react-redux";
 
 class Map extends React.Component {
@@ -117,6 +117,7 @@ class Map extends React.Component {
             }
 
             console.log(features);
+            this.props.openDrawer();
             this.props.showFeatures(features);
             // console.log(features.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.properties.count),0));
         });
@@ -181,7 +182,8 @@ class Map extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    showFeatures: (features) => dispatch(showFeatures(features))
+    showFeatures: (features) => dispatch(showFeatures(features)),
+    openDrawer: () => dispatch(openDrawer())
 });
 
 const mapStateToProps = state => ({

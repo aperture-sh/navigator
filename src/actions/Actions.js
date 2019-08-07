@@ -1,6 +1,6 @@
 import {
     ADD_FEATURES,
-    CHANGE_FEATURE_PROP,
+    CHANGE_FEATURE_PROP, CLOSE_DRAWER,
     CLOSE_EXHAUSTER,
     CONFIG_CHANGE,
     DARK_MODE_OFF,
@@ -8,7 +8,7 @@ import {
     DELETE_FEATURE,
     FINISH_UPLOAD,
     HIDE_BASELAYER,
-    INIT_FEATURES,
+    INIT_FEATURES, OPEN_DRAWER,
     OPEN_EXHAUSTER,
     REMOVE_PROPERTY_FROM_FEATURE,
     REMOVE_UPLOAD,
@@ -121,4 +121,12 @@ export const hideBaselayer  = () => ({
 
 export const showBaselayer  = () => ({
     type: SHOW_BASELAYER
+});
+
+export const openDrawer = () => ({
+    type: OPEN_DRAWER
+});
+
+export const closeDrawer = () => ({
+    type: CLOSE_DRAWER
 });

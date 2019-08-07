@@ -22,3 +22,6 @@ export const INIT_FEATURES = "INIT_FEATURES";
 
 export const HIDE_BASELAYER = "HIDE_BASELAYER";
 export const SHOW_BASELAYER = "SHOW_BASELAYER";
+
+export const OPEN_DRAWER = "OPEN_DRAWER";
+export const CLOSE_DRAWER = "CLOSE_DRAWER";

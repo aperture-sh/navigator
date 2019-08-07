@@ -1,10 +1,10 @@
 import {
-    ADD_FEATURES, CHANGE_FEATURE_PROP,
+    ADD_FEATURES, CHANGE_FEATURE_PROP, CLOSE_DRAWER,
     CLOSE_EXHAUSTER,
     CONFIG_CHANGE,
     DARK_MODE_OFF,
     DARK_MODE_ON, DELETE_FEATURE,
-    FINISH_UPLOAD, HIDE_BASELAYER, INIT_FEATURES, OPEN_EXHAUSTER, REMOVE_PROPERTY_FROM_FEATURE,
+    FINISH_UPLOAD, HIDE_BASELAYER, INIT_FEATURES, OPEN_DRAWER, OPEN_EXHAUSTER, REMOVE_PROPERTY_FROM_FEATURE,
     REMOVE_UPLOAD, SHOW_BASELAYER,
     SHOW_FEATURES,
     START_UPLOAD, START_UPLOADS, SUBMIT_FEATURE, UPDATE_UPLOAD_PROGRESS
@@ -18,6 +18,7 @@ const initialState = {
     files: {},
     config: undefined,
     modal: false,
+    drawer: false,
     baselayer: true
 };
 
@@ -117,6 +118,14 @@ const app = (state = initialState, action) => {
         case SHOW_BASELAYER:
             return { ...state,
                 baselayer: true
+            };
+        case OPEN_DRAWER:
+            return { ...state,
+                drawer: true
+            };
+        case CLOSE_DRAWER:
+            return { ...state,
+                drawer: false
             };
         default:
             return state;

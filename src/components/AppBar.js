@@ -3,7 +3,8 @@ import './AppBar.css';
 import TopAppBar, {TopAppBarRow, TopAppBarSection, TopAppBarTitle, TopAppBarIcon} from "@material/react-top-app-bar";
 import MaterialIcon from "@material/react-material-icon";
 import {
-    hideBaselayer,
+    closeDrawer,
+    hideBaselayer, openDrawer,
     openExhauster,
     showBaselayer,
     startUploads,
@@ -39,11 +40,20 @@ class AppBar extends React.Component {
         }
     };
 
+    toggleDrawer = () => {
+        if (this.props.drawer) {
+            this.props.closeDrawer();
+        } else {
+            this.props.openDrawer();
+        }
+    };
+
     triggerFilepick = () => {
         document.getElementById("filepicker").click();
     };
 
     uploadFiles = (e) => {
+        this.props.openDrawer();
         const files = e.target.files;
         this.props.startUploads(files);
         e.target.value = "";
@@ -56,7 +66,7 @@ class AppBar extends React.Component {
                 <TopAppBarRow>
                     <TopAppBarSection align='start'>
                         <TopAppBarIcon navIcon tabIndex={0}>
-                            <MaterialIcon hasRipple icon='menu' onClick={() => console.log('click')}/>
+                            <MaterialIcon hasRipple icon='menu' onClick={() => this.toggleDrawer()}/>
                         </TopAppBarIcon>
                         <TopAppBarTitle>Tank Navigator</TopAppBarTitle>
                     </TopAppBarSection>
@@ -109,12 +119,16 @@ const mapDispatchToProps = dispatch => ({
     startUploads: (files) => dispatch(startUploads(files)),
     openExhauster: () => dispatch(openExhauster()),
     hideBaselayer: () => dispatch(hideBaselayer()),
-    showBaselayer: () => dispatch(showBaselayer())
+    showBaselayer: () => dispatch(showBaselayer()),
+    openDrawer: () => dispatch(openDrawer()),
+    closeDrawer: () => dispatch(closeDrawer())
 });
 
 
 const mapStateToProps = (state) => ({
-    baselayer: state.baselayer
+    baselayer: state.baselayer,
+    drawer: state.drawer,
+    darkMode: state.darkMode
 });
 
 export default connect(

@@ -8,6 +8,7 @@ import './Exhauster.css';
 import MaterialIcon from "@material/react-material-icon";
 import Button from "@material/react-button";
 import ExhausterFeature from "./ExhausterFeature";
+import {Subtitle1, Subtitle2} from "@material/react-typography";
 
 class Exhauster extends React.Component {
     componentDidMount() {
@@ -66,12 +67,12 @@ class Exhauster extends React.Component {
     render() {
         return(
             <div>
-                <h6>The following features were not imported due database type collisions. Please correct and submit features, or dismiss them completly.</h6>
+                <Subtitle1>The following features were not imported due database type collisions. Please correct and submit features, or dismiss them completly.</Subtitle1>
                 <Button
                     outlined="true"
                     icon={<MaterialIcon icon="refresh" />}
                     onClick={() => this.resetView()}>Refresh</Button>
-                <h5 className={ this.props.features.length <= 0 ? "" : "show-no-features" }>No Import Error occurred</h5>
+                <Subtitle2 className={ this.props.features.length <= 0 ? "" : "show-no-features" }>No Import Error occurred</Subtitle2>
                 {this.props.features.map((f) => <ExhausterFeature feature={f}  key={f._id.$oid} />)}
             </div>
 
