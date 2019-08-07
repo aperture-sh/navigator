@@ -22,21 +22,7 @@
 
 }
 
-.navbar-container {
-  height: 5vh;
-  grid-gap: 0 !important;
-}
-
 .content-container {
   height: calc(100vh - 64px);
   grid-gap: 0 !important;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

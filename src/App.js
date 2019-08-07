@@ -36,8 +36,8 @@ class App extends React.Component {
                 <TopAppBarFixedAdjust>
                     <Grid className={"main-container"}>
                         <Row className={"content-container"}>
-                            <Cell desktopColumns={3} order={2} phoneColumns={4} tabletColumns={4}><Sidebar/></Cell>
-                            <Cell desktopColumns={9} order={3} phoneColumns={4} tabletColumns={4}><Map/></Cell>
+                            <Cell desktopColumns={3} order={2} phoneColumns={0} tabletColumns={3}><Sidebar/></Cell>
+                            <Cell desktopColumns={9} order={3} phoneColumns={12} tabletColumns={12}><Map/></Cell>
                         </Row>
 
                     </Grid>
