@@ -15,6 +15,7 @@
     "@material/react-switch": "^0.15.0",
     "@material/react-text-field": "^0.15.0",
     "@material/react-top-app-bar": "^0.15.0",
+    "@material/react-typography": "^0.15.0",
     "bootstrap": "^4.3.1",
     "mapbox-gl": "^1.2.0",
     "react": "^16.8.6",

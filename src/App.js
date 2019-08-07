@@ -17,6 +17,7 @@ import '@material/react-top-app-bar/dist/top-app-bar.css';
 import '@material/react-material-icon/dist/material-icon.css';
 import '@material/react-layout-grid/dist/layout-grid.css';
 import "@material/react-switch/dist/switch.css";
+import '@material/react-typography/dist/typography.css';
 import {Cell, Grid, Row} from '@material/react-layout-grid';
 import AppBar from "./components/AppBar";
 import {TopAppBarFixedAdjust} from '@material/react-top-app-bar';
