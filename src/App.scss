@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+.App {
+  height: 100%;
+  width: 100%;
+}
+
+.main-container {
+  padding: 0 !important;
+}
+
+.mdc-layout-grid-gutter-desktop {
+  padding: 0;
+  margin: 0;
+
+}
+
+
+.drawer-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.drawer-app-content {
+  flex: auto;
+  overflow: auto;
+}
+
+.top-app-bar-fix-adjust {
+  display: flex;
+  width: 100%;
+}
+
+$mdc-theme-primary: #FDD835;
+$mdc-theme-secondary: #F57F17;
+$mdc-theme-on-primary: #442b2d;
+$mdc-theme-on-secondary: #442b2d;
+
+@import "@material/react-button/index.scss";
+@import "@material/react-dialog/index.scss";
+@import "@material/react-list/index.scss";
+@import "@material/react-card/index.scss";
+@import "@material/react-text-field/index.scss";
+@import "@material/react-top-app-bar/index.scss";
+@import "@material/react-material-icon/index.scss";
+@import "@material/react-layout-grid/index.scss";
+@import "@material/react-switch/index.scss";
+@import "@material/react-typography/index.scss";
+@import "@material/react-drawer/index.scss";
+
+.mdc-drawer__content, aside, body {
+  background-color: $mdc-theme-primary;
+}
+
+body {
+
+}
