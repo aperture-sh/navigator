@@ -70,6 +70,7 @@ class Exhauster extends React.Component {
                 <Subtitle1>The following features were not imported due database type collisions. Please correct and submit features, or dismiss them completly.</Subtitle1>
                 <Button
                     outlined="true"
+                    className={"secondary-stroked-button"}
                     icon={<MaterialIcon icon="refresh" />}
                     onClick={() => this.resetView()}>Refresh</Button>
                 <Subtitle2 className={ this.props.features.length <= 0 ? "" : "show-no-features" }>No Import Error occurred</Subtitle2>

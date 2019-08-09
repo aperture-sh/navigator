@@ -17,7 +17,7 @@ class NavigatorDialog extends React.Component {
               {content}
             </DialogContent>
             <DialogFooter>
-                <DialogButton action='dismiss' outlined="true">Close</DialogButton>
+                <DialogButton className={"secondary-stroked-button"} action='dismiss' outlined="true">Close</DialogButton>
             </DialogFooter>
             </Dialog>
     )

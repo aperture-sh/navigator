@@ -89,8 +89,8 @@ class ExhausterFeature extends React.Component {
 
                 <CardActions>
                     <CardActionButtons>
-                        <Button outlined={"true"} onClick={() => this.dismissFeature(f)}>Dismiss Feature</Button>
-                        <Button outlined={"true"} onClick={() => this.saveChanges(f)}>Save changes</Button>
+                        <Button outlined={"true"} className={"secondary-stroked-button"} onClick={() => this.dismissFeature(f)}>Dismiss Feature</Button>
+                        <Button outlined={"true"} className={"secondary-stroked-button"} onClick={() => this.saveChanges(f)}>Save changes</Button>
                     </CardActionButtons>
                 </CardActions>
             </Card>
