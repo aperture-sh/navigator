@@ -12,6 +12,7 @@ import {
     turnDarkModeOn
 } from "../actions/Actions";
 import {connect} from "react-redux";
+import ReactTooltip from 'react-tooltip'
 
 class AppBar extends React.Component {
 
@@ -63,6 +64,7 @@ class AppBar extends React.Component {
         return (
             <TopAppBar>
                 <input type="file" id="filepicker" className={"hidden-input"} onChange={this.uploadFiles} multiple />
+                <ReactTooltip place="bottom" type="dark" effect="solid" />
                 <TopAppBarRow>
                     <TopAppBarSection align='start'>
                         <TopAppBarIcon navIcon tabIndex={0}>
@@ -71,7 +73,7 @@ class AppBar extends React.Component {
                         <TopAppBarTitle>Tank Navigator</TopAppBarTitle>
                     </TopAppBarSection>
                     <TopAppBarSection align='end'>
-                        <TopAppBarIcon actionItem>
+                        <TopAppBarIcon actionItem data-tip="Upload Files">
                             <MaterialIcon
                                 aria-label="Upload File"
                                 hasRipple
@@ -79,7 +81,7 @@ class AppBar extends React.Component {
                                 onClick={() => this.triggerFilepick()}
                             />
                         </TopAppBarIcon>
-                        <TopAppBarIcon actionItem>
+                        <TopAppBarIcon actionItem data-tip="Import Error Handling">
                             <MaterialIcon
                                 aria-label="Show Feature Import Errors"
                                 hasRipple
@@ -87,7 +89,7 @@ class AppBar extends React.Component {
                                 onClick={() => this.props.openExhauster()}
                             />
                         </TopAppBarIcon>
-                        <TopAppBarIcon actionItem>
+                        <TopAppBarIcon actionItem data-tip="Hide/Show Baselayer">
                             <MaterialIcon
                                 aria-label="Hide/Show Baselayer"
                                 hasRipple
@@ -95,9 +97,9 @@ class AppBar extends React.Component {
                                 onClick={() => this.toggleBaselayer()}
                             />
                         </TopAppBarIcon>
-                        <TopAppBarIcon actionItem>
+                        <TopAppBarIcon actionItem data-tip="Darkmode on/off">
                             <MaterialIcon
-                                aria-label="print page"
+                                aria-label="Darkmode on/off"
                                 hasRipple
                                 icon='brightness_medium'
                                 onClick={() => this.toggleDarkMode()}
