@@ -93,7 +93,7 @@ class AppBar extends React.Component {
                             <MaterialIcon
                                 aria-label="Hide/Show Baselayer"
                                 hasRipple
-                                icon='layers'
+                                icon={(this.state.baseLayer) ? 'layers' : 'layers_clear'}
                                 onClick={() => this.toggleBaselayer()}
                             />
                         </TopAppBarIcon>
@@ -101,7 +101,7 @@ class AppBar extends React.Component {
                             <MaterialIcon
                                 aria-label="Darkmode on/off"
                                 hasRipple
-                                icon='brightness_medium'
+                                icon={(this.props.darkMode) ? 'brightness_high' : 'brightness_low'}
                                 onClick={() => this.toggleDarkMode()}
                             />
                         </TopAppBarIcon>
