@@ -66,16 +66,21 @@ body {
 }
 
 .mdc-button.secondary-text-button {
-  @include mdc-button-ink-color($mdc-theme-secondary);
+  @include mdc-button-ink-color($mdc-theme-on-primary);
   @include mdc-states(secondary);
 }
 
 .mdc-button.secondary-filled-button {
-  @include mdc-button-filled-accessible($mdc-theme-secondary);
+  @include mdc-button-filled-accessible($mdc-theme-on-primary);
 }
 
 .mdc-button.secondary-stroked-button {
-  @include mdc-button-ink-color($mdc-theme-secondary);
-  @include mdc-button-outline-color($mdc-theme-secondary);
+  @include mdc-button-ink-color($mdc-theme-on-primary);
+  @include mdc-button-outline-color($mdc-theme-on-primary);
 
+}
+
+.mdc-text-field.secondary-stroked-text-field {
+  @include mdc-text-field-focused-outline-color($mdc-theme-on-primary);
+  @include mdc-text-field-label-color($mdc-theme-on-primary);
 }

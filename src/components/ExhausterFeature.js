@@ -72,6 +72,7 @@ class ExhausterFeature extends React.Component {
                                             key={f._id.$oid + "-" + prop}
                                             label={prop}
                                             outlined="true"
+                                            className="secondary-stroked-text-field"
                                             // dense="true"
                                             trailingIcon={<MaterialIcon role="button" icon="delete" />}
                                             onTrailingIconSelect={() => this.removePropertyFromFeature(f, prop)}
@@ -90,7 +91,7 @@ class ExhausterFeature extends React.Component {
                 <CardActions>
                     <CardActionButtons>
                         <Button outlined={"true"} className={"secondary-stroked-button"} onClick={() => this.dismissFeature(f)}>Dismiss Feature</Button>
-                        <Button outlined={"true"} className={"secondary-stroked-button"} onClick={() => this.saveChanges(f)}>Save changes</Button>
+                        <Button raised={"true"} className={"secondary-stroked-button"} onClick={() => this.saveChanges(f)}>Save changes</Button>
                     </CardActionButtons>
                 </CardActions>
             </Card>
