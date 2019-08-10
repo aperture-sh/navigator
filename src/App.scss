@@ -40,10 +40,10 @@
   width: 100%;
 }
 
-$mdc-theme-primary: #FDD835;
-$mdc-theme-secondary: #F57F17;
-$mdc-theme-on-primary: #442b2d;
-$mdc-theme-on-secondary: #442b2d;
+$mdc-theme-primary: #2e7d32;
+$mdc-theme-secondary: #8bc34a;
+$mdc-theme-on-primary: #ffffff;
+$mdc-theme-on-secondary: #000000;
 
 @import "@material/react-button/index.scss";
 @import "@material/react-dialog/index.scss";
@@ -57,30 +57,32 @@ $mdc-theme-on-secondary: #442b2d;
 @import "@material/react-typography/index.scss";
 @import "@material/react-drawer/index.scss";
 
-.mdc-drawer__content, aside, body {
+/*.mdc-drawer__content, aside, body {
   background-color: $mdc-theme-primary;
-}
+}*/
 
 body {
 
 }
+/*
 
 .mdc-button.secondary-text-button {
-  @include mdc-button-ink-color($mdc-theme-on-primary);
+  @include mdc-button-ink-color($mdc-theme-on-secondary);
   @include mdc-states(secondary);
 }
 
 .mdc-button.secondary-filled-button {
-  @include mdc-button-filled-accessible($mdc-theme-on-primary);
+  @include mdc-button-filled-accessible($mdc-theme-on-secondary);
 }
 
 .mdc-button.secondary-stroked-button {
-  @include mdc-button-ink-color($mdc-theme-on-primary);
-  @include mdc-button-outline-color($mdc-theme-on-primary);
+  @include mdc-button-ink-color($mdc-theme-on-secondary);
+  @include mdc-button-outline-color($mdc-theme-on-secondary);
 
 }
 
 .mdc-text-field.secondary-stroked-text-field {
-  @include mdc-text-field-focused-outline-color($mdc-theme-on-primary);
-  @include mdc-text-field-label-color($mdc-theme-on-primary);
+  @include mdc-text-field-focused-outline-color($mdc-theme-on-secondary);
+  @include mdc-text-field-label-color($mdc-theme-on-secondary);
 }
+*/
