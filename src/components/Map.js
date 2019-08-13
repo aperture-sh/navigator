@@ -116,7 +116,6 @@ class Map extends React.Component {
                 features = this.map.queryRenderedFeatures(bbox, {layers: ['geo2']});
             }
 
-            console.log(features);
             this.props.openDrawer();
             this.props.showFeatures(features);
             // console.log(features.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.properties.count),0));
