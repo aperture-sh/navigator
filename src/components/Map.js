@@ -35,7 +35,7 @@ class Map extends React.Component {
                     'tank': {
                         "type": "vector",
                         "tiles": [this.props.config.tank + "/tile/{z}/{x}/{y}"],
-                        "minzoom": 9
+                        "minzoom": 10
                     },
                     'tank2': {
                         "type": "vector",
