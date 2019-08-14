@@ -1,8 +1,10 @@
 import React from 'react';
 import './Map.css';
 import * as mapboxgl from "mapbox-gl";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import {openDrawer, showFeatures} from "../actions/Actions";
 import {connect} from "react-redux";
+import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
 class Map extends React.Component {
     componentDidMount() {
@@ -106,6 +108,12 @@ class Map extends React.Component {
                 ]
             }
         });
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZnpvdWhhciIsImEiOiJjanlzaWJiaTcwNGZyM2JueHMwMmFqbGF2In0.1TECDv7L90i3FyBzl_b8EA';
+            this.map.addControl(new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
+        }));
 
         this.map.on('click', (e) => {
             let bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
