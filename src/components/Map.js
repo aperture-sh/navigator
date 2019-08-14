@@ -25,7 +25,7 @@ class Map extends React.Component {
     initMap() {
         this.map = new mapboxgl.Map({
             'container': 'map',
-            'maxTileCacheSize': 5,
+            'maxTileCacheSize': 10,
             'minZoom': 2,
             'zoom': 4,
             'center': [-95.7129, 37.0902],
@@ -110,7 +110,7 @@ class Map extends React.Component {
         this.map.on('click', (e) => {
             let bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
             let features = [];
-            if (this.map.getZoom() > 8) {
+            if (this.map.getZoom() > 10) {
                 features = this.map.queryRenderedFeatures(bbox, {layers: ['geo']});
             } else {
                 features = this.map.queryRenderedFeatures(bbox, {layers: ['geo2']});
@@ -122,7 +122,7 @@ class Map extends React.Component {
         });
 
         this.map.on('zoom', () => {
-            if (this.map.getZoom() > 9) {
+            if (this.map.getZoom() > 10) {
                 this.map.setLayoutProperty("geo2", 'visibility', 'none');
 
             } else {
