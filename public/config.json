@@ -3,5 +3,6 @@
   "exhauster": {
     "url": "http://localhost:3000/exhauster",
     "enabled": true
-  }
+  },
+  "mapbox-key": ""
 }

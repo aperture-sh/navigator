@@ -109,8 +109,8 @@ class Map extends React.Component {
             }
         });
 
-        mapboxgl.accessToken = 'pk.eyJ1IjoiZnpvdWhhciIsImEiOiJjanlzaWJiaTcwNGZyM2JueHMwMmFqbGF2In0.1TECDv7L90i3FyBzl_b8EA';
-            this.map.addControl(new MapboxGeocoder({
+        mapboxgl.accessToken = this.props.config.mapbox-key;
+        this.map.addControl(new MapboxGeocoder({
             accessToken: mapboxgl.accessToken,
             mapboxgl: mapboxgl
         }));
