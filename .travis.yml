@@ -6,7 +6,7 @@ services:
 jdk:
   - oraclejdk8
 script:
-  - npm install && npm build
+  - npm install && npm test && npm build
 # see also https://docs.travis-ci.com/user/languages/java/#Caching
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
