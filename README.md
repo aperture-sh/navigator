@@ -1,6 +1,6 @@
 # Navigator
 
-[![Apache License, Version 2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0) [![Build Status](https://travis-ci.org/marauder-io/navigator.svg?branch=master)](https://travis-ci.org/marauder-io/navigator) ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/maraud3r/navigator)
+[![Apache License, Version 2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0) [![Build Status](https://travis-ci.org/aperture-sh/navigator.svg?branch=master)](https://travis-ci.org/aperture-sh/navigator) [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/ap3rture/navigator)](https://hub.docker.com/r/ap3rture/navigator)
 
 ## Available Scripts
 
