@@ -109,11 +109,13 @@ class Map extends React.Component {
             }
         });
 
-        mapboxgl.accessToken = this.props.config.mapbox_key;
-        this.map.addControl(new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            mapboxgl: mapboxgl
-        }));
+        if (this.props.config.mapbox_key) {
+            mapboxgl.accessToken = this.props.config.mapbox_key;
+            this.map.addControl(new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl
+            }));
+        }
 
         this.map.on('click', (e) => {
             let bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
