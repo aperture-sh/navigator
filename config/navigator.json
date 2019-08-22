@@ -1,0 +1,8 @@
+{
+  "tank": "http://tank:8888",
+  "exhauster": {
+    "url": "http://exhauster:8080",
+    "enabled": true
+  },
+  "mapbox_key": ""
+}

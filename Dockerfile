@@ -15,6 +15,7 @@ MAINTAINER Florian Zouhar <florian.zouhar@igd.fraunhofer.de>
 
 COPY --from=build /app/build /usr/share/nginx/html
 COPY config/nginx.conf /etc/nginx/nginx.conf
+COPY config/navigator.json /usr/share/nginx/html/config.json
 
 EXPOSE 80
 
