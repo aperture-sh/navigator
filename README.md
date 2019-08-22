@@ -15,7 +15,8 @@
 
 ## Deployment
 
-For production enviroments see our provisioning scripts using [Ansible](https://github.com/aperture-sh/tank-ansible) and [Terraform](https://github.com/aperture-sh/tank-terraform).
+* For a Aperture Infrastructure quickstart see `README.md` here [Tank](https://github.com/aperture-sh/tank).
+* For production environments see our provisioning scripts using [Ansible](https://github.com/aperture-sh/tank-ansible) and [Terraform](https://github.com/aperture-sh/tank-terraform).
 
 ## Available Scripts
 
