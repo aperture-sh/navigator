@@ -1,7 +1,7 @@
 {
-  "tank": "http://localhost:8888",
+  "tank": "http://localhost:8081/tank",
   "exhauster": {
-    "url": "http://localhost:8080",
+    "url": "http://localhost:8081/exhauster",
     "enabled": true
   },
   "mapbox_key": ""
