@@ -1,6 +1,7 @@
 FROM node:latest AS build
 
 ARG GENERATE_SOURCEMAP=false
+ARG CI=true
 
 WORKDIR /app
 
