@@ -84,7 +84,6 @@ class Map extends React.Component {
                         "source-layer": "io.marauder.tank",
                         "type": "fill",
                         "paint": {
-                            // "fill-outline-color": "rgb(139,195,74)",
                             "fill-color": [
                                 "interpolate",
                                 ["linear"],
