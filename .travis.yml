@@ -11,6 +11,7 @@ jdk:
 script:
 - npm install && npm test && npm run build && npm run zip
 - make image
+- make image-branch
 before_cache:
 - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -33,3 +34,7 @@ deploy:
     script: make push-image
     on:
       branch: master
+  - provider: script
+    script: make push-image-branch
+    on:
+      all_branches: true
