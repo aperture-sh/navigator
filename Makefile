@@ -1,4 +1,4 @@
-IMAGE := $(TRAVIS_REPO_SLUG):latest
+IMAGE := $(DOCKER_ORGANIZATION)/$(notdir $(TRAVIS_REPO_SLUG)):latest
 
 image:
 	docker build -t $(IMAGE) .
