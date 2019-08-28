@@ -163,7 +163,11 @@ class Map extends React.Component {
     }
 
     changeFilter(attr, val) {
-        this.map.setFilter('geo', ['==', attr, val]);
+        if (val !== "") {
+            this.map.setFilter('geo', ['==', attr, val]);
+        } else {
+            this.map.setFilter('geo', undefined);
+        }
     }
 
     toggleDarkMode() {
