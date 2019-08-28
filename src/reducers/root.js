@@ -1,5 +1,5 @@
 import {
-    ADD_FEATURES, CHANGE_FEATURE_PROP, CLOSE_DRAWER,
+    ADD_FEATURES, CHANGE_FEATURE_PROP, CHANGE_FILTER, CLOSE_DRAWER,
     CLOSE_EXHAUSTER,
     CONFIG_CHANGE,
     DARK_MODE_OFF,
@@ -17,6 +17,7 @@ const initialState = {
     exhausted_features: [],
     files: {},
     config: undefined,
+    filter: undefined,
     modal: false,
     drawer: false,
     baselayer: true
@@ -126,6 +127,10 @@ const app = (state = initialState, action) => {
         case CLOSE_DRAWER:
             return { ...state,
                 drawer: false
+            };
+        case CHANGE_FILTER:
+            return { ...state,
+                filter: action.payload
             };
         default:
             return state;

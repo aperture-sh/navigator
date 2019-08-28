@@ -22,6 +22,9 @@ class Map extends React.Component {
         if (this.props.baselayer !== prevProps.baselayer) {
             this.toggleBaseLayer();
         }
+        if (this.props.filter) {
+            this.changeFilter(this.props.filter.attr, this.props.filter.val);
+        }
     }
 
     initMap() {
@@ -159,6 +162,10 @@ class Map extends React.Component {
         });
     }
 
+    changeFilter(attr, val) {
+        this.map.setFilter('geo', ['==', attr, val]);
+    }
+
     toggleDarkMode() {
         if (this.props.darkMode === true) {
             this.map.setLayoutProperty("osm", 'visibility', 'none');
@@ -215,7 +222,8 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
     darkMode: state.darkMode,
     config: state.config,
-    baselayer: state.baselayer
+    baselayer: state.baselayer,
+    filter: state.filter
 });
 
 export default connect(

@@ -80,9 +80,9 @@ body {
   @include mdc-button-outline-color($mdc-theme-on-secondary);
 
 }
+*/
 
 .mdc-text-field.secondary-stroked-text-field {
   @include mdc-text-field-focused-outline-color($mdc-theme-on-secondary);
   @include mdc-text-field-label-color($mdc-theme-on-secondary);
 }
-*/

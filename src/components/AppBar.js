@@ -3,6 +3,7 @@ import './AppBar.css';
 import TopAppBar, {TopAppBarRow, TopAppBarSection, TopAppBarTitle, TopAppBarIcon} from "@material/react-top-app-bar";
 import MaterialIcon from "@material/react-material-icon";
 import {
+    changeFilter,
     closeDrawer,
     hideBaselayer, openDrawer,
     openExhauster,
@@ -13,12 +14,13 @@ import {
 } from "../actions/Actions";
 import {connect} from "react-redux";
 import ReactTooltip from 'react-tooltip'
+import TextField, {Input} from "@material/react-text-field";
 
 class AppBar extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {darkMode: true, baseLayer: true};
+        this.state = {darkMode: true, baseLayer: true, filter: ""};
     }
 
     toggleDarkMode = () => {
@@ -60,6 +62,13 @@ class AppBar extends React.Component {
         e.target.value = "";
     };
 
+    handleChangeInput = (e) => {
+      this.setState({ ...this.state,
+        filter: e.value
+      });
+      this.props.changeFilter("county", e.value);
+    };
+
     render() {
         return (
             <TopAppBar>
@@ -73,6 +82,17 @@ class AppBar extends React.Component {
                         <TopAppBarTitle>Tank Navigator</TopAppBarTitle>
                     </TopAppBarSection>
                     <TopAppBarSection align='end'>
+                        <TextField
+                            label={"Filter County"}
+                            outlined="true"
+                            className="secondary-stroked-text-field"
+                            // dense="true"
+                        ><Input
+                            id={"filter_county"}
+                            name={"filter_county"}
+                            value={this.state.filter}
+                            onChange={(e) => this.handleChangeInput(e.target)} />
+                        </TextField>
                         <TopAppBarIcon actionItem data-tip="Upload Files">
                             <MaterialIcon
                                 aria-label="Upload File"
@@ -123,7 +143,8 @@ const mapDispatchToProps = dispatch => ({
     hideBaselayer: () => dispatch(hideBaselayer()),
     showBaselayer: () => dispatch(showBaselayer()),
     openDrawer: () => dispatch(openDrawer()),
-    closeDrawer: () => dispatch(closeDrawer())
+    closeDrawer: () => dispatch(closeDrawer()),
+    changeFilter: (attr, val) => dispatch(changeFilter(attr, val))
 });
 
 

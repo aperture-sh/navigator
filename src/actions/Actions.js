@@ -1,6 +1,6 @@
 import {
     ADD_FEATURES,
-    CHANGE_FEATURE_PROP, CLOSE_DRAWER,
+    CHANGE_FEATURE_PROP, CHANGE_FILTER, CLOSE_DRAWER,
     CLOSE_EXHAUSTER,
     CONFIG_CHANGE,
     DARK_MODE_OFF,
@@ -129,4 +129,12 @@ export const openDrawer = () => ({
 
 export const closeDrawer = () => ({
     type: CLOSE_DRAWER
+});
+
+export const changeFilter = (attr, val) => ({
+    type: CHANGE_FILTER,
+    payload: {
+        attr: attr,
+        val: val
+    }
 });

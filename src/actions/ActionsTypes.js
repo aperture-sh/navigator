@@ -25,3 +25,5 @@ export const SHOW_BASELAYER = "SHOW_BASELAYER";
 
 export const OPEN_DRAWER = "OPEN_DRAWER";
 export const CLOSE_DRAWER = "CLOSE_DRAWER";
+
+export const CHANGE_FILTER = "CHANGE_FILTER";
