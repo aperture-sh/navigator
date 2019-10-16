@@ -29,9 +29,10 @@ class FileUpload extends React.PureComponent {
             const file = this.props.files[fileId];
             if (file.progress <= 0) {
 
+                //TODO: remove? used for what?
                 const formData = new FormData();
                 formData.append("test", file);
-                fetch(`${this.props.config.tank}/`, {
+                fetch(`${this.props.config.tank}/_bulk`, {
                     method: 'POST',
                     headers: {
                         "Content-Type": file.file.type
