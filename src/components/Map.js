@@ -79,17 +79,39 @@ class Map extends React.Component {
                         }
                     },
                     {
-                        "id": "geo",
+                        "id": "geo-polygon",
                         "source": "tank",
                         "source-layer": "io.marauder.tank",
                         "type": "fill",
                         "paint": {
                             "fill-outline-color": "rgb(139,195,74)",
                             "fill-color": "rgba(139,195,74,0.2)"
-                        }
+                        },
+                        "filter": ["==", "$type", "Polygon"]
                     },
                     {
-                        "id": "geo2",
+                        "id": "geo-point",
+                        "source": "tank",
+                        "source-layer": "io.marauder.tank",
+                        "paint": {
+                          "circle-radius": 5,
+                          "circle-color": "rgba(139,195,74, 0.5)"
+                        },
+                        "type": "circle",
+                        "filter": ["==", "$type", "Point"]
+                    },
+                    {
+                        "id": "geo-linestring",
+                        "source": "tank",
+                        "source-layer": "io.marauder.tank",
+                        "paint": {
+                            "line-color": "rgb(139,195,74)"
+                        },
+                        "type": "line",
+                        "filter": ["==", "$type", "LineString"]
+                    },
+                    {
+                        "id": "geo-heatmap",
                         "source": "tank2",
                         "source-layer": "io.marauder.tank",
                         "type": "fill",
@@ -121,9 +143,9 @@ class Map extends React.Component {
             let bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
             let features = [];
             if (this.map.getZoom() > 10) {
-                features = this.map.queryRenderedFeatures(bbox, {layers: ['geo']});
+                features = this.map.queryRenderedFeatures(bbox, {layers: ['geo-polygon', 'geo-linestring', 'geo-point']});
             } else {
-                features = this.map.queryRenderedFeatures(bbox, {layers: ['geo2']});
+                features = this.map.queryRenderedFeatures(bbox, {layers: ['geo-heatmap']});
             }
 
             this.props.openDrawer();
@@ -133,11 +155,11 @@ class Map extends React.Component {
 
         this.map.on('zoom', () => {
             if (this.map.getZoom() > 10) {
-                this.map.setLayoutProperty("geo2", 'visibility', 'none');
+                this.map.setLayoutProperty("geo-heatmap", 'visibility', 'none');
 
             } else {
 
-                this.map.setLayoutProperty("geo2", 'visibility', 'visible');
+                this.map.setLayoutProperty("geo-heatmap", 'visibility', 'visible');
             }
         });
 
@@ -158,13 +180,17 @@ class Map extends React.Component {
         if (this.props.darkMode === true) {
             this.map.setLayoutProperty("osm", 'visibility', 'none');
             this.map.setLayoutProperty("cartodb", 'visibility', 'visible');
-            this.map.setPaintProperty("geo", "fill-color", "rgba(139,195,74,0.2)");
-            this.map.setPaintProperty("geo", "fill-outline-color", "rgb(139,195,74)");
+            this.map.setPaintProperty("geo-polygon", "fill-color", "rgba(139,195,74,0.2)");
+            this.map.setPaintProperty("geo-point", "circle-color", "rgba(139,195,74,0.5)");
+            this.map.setPaintProperty("geo-linestring", "line-color", "rgba(139,195,74,1.0)");
+            this.map.setPaintProperty("geo-polygon", "fill-outline-color", "rgb(139,195,74)");
         } else {
             this.map.setLayoutProperty("cartodb", 'visibility', 'none');
             this.map.setLayoutProperty("osm", 'visibility', 'visible');
-            this.map.setPaintProperty("geo", "fill-outline-color", "#000000");
-            this.map.setPaintProperty("geo", "fill-color", "rgba(1,1,1,0.2)");
+            this.map.setPaintProperty("geo-polygon", "fill-outline-color", "#000000");
+            this.map.setPaintProperty("geo-polygon", "fill-color", "rgba(1,1,1,0.2)");
+            this.map.setPaintProperty("geo-point", "circle-color", "rgba(1,1,1,0.5)");
+            this.map.setPaintProperty("geo-linestring", "line-color", "rgba(1,1,1,1.0)");
         }
     }
 
