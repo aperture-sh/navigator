@@ -11,7 +11,7 @@
 ## Quickstart
 
 * Create `config.json`
-* Run container and mount config file: `docker run --rm -it --name navigator --link tank -v /opt/navigator/config.json:/usr/share/nginx/html/config.json ap3rture/navigator:latest`
+* Run container and mount config file: `docker run --rm -it --name navigator --link tank -v /opt/navigator/config.json:/usr/share/nginx/html/config.json docker.pkg.github.com/aperture-sh/navigator/navigator:latest`
 
 ## Deployment
 
